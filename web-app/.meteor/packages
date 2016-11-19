@@ -30,3 +30,6 @@ raix:handlebar-helpers
 aldeed:collection2
 session
 underscore
+dburles:collection-helpers
+http
+harrison:papa-parse
