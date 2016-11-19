@@ -6,5 +6,71 @@
 @import "{poetic:materialize-scss}/sass/materialize.scss";
 
 body {
-  color: red;
+  color: #333;
+  background-color:aliceblue;
+}
+
+nav {
+  background-color:#4A90E2;
+  img.nav-logo {
+    height: 64px;
+    padding: 7px 0px 13px 20px;
+  }
+  span {
+    vertical-align: top;
+  }
+}
+
+.tags-box {
+  margin-top:3rem;
+}
+
+.tag {
+  display: inline-block;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  padding:0.25rem 1rem;
+  border-radius: 2rem;
+  background-color: #ddd;
+  border:1px solid #ddd;
+  color:blue;
+  transition:0.2s;
+  cursor: pointer;
+}
+.tag:before {
+  content:'#';
+}
+
+.tag.tag-active {
+  background-color:blue;
+  color:white;
+  border-color:blue;
+  transform: scale(1.1);
+}
+
+// .tag.tag-active ~ .tag {
+//   background-color:#EEE;
+//   color:grey;
+// }
+
+.tags-box .tag:hover {
+  background-color:aliceblue;
+}
+
+.tags-box.tag-active .tag:hover {
+  background-color:blue;
+}
+
+.results-container {
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.result-card {
+  width: 30%;
+  display: inline-block;
+  padding: 0.2rem;
+  img {
+    width: 100%;
+  }
 }

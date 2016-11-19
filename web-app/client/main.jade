@@ -1,3 +1,35 @@
 template(name="Home")
-  h1 Que dirait Diderot ?
-  h4 Choississez des tags
+  .navbar-fixed
+    nav
+      .nav-wrapper
+        a(href="#" class="brand-logo")
+          img.nav-logo(src="/QDDiderot-logo.png")
+          span Que Dirait Diderot ?
+        //- <ul id="nav-mobile" class="right hide-on-med-and-down">
+        //-   <li><a href="sass.html">Sass</a></li>
+        //-   <li><a href="badges.html">Components</a></li>
+        //-   <li><a href="collapsible.html">JavaScript</a></li>
+        //- </ul>
+
+  .container
+    .tags-box.center 
+      h4 Choisissez un tag
+      .tag Trump
+      .tag.tag-active ParisAgainstTrump
+      .tag FRAAUS
+      .tag Yolo
+      .tag Swag
+      .tag Rugby
+      .tag Pasdidee
+      .tag Random
+      .tag Brawket
+
+  .results-container.center
+    h4.results-title Résultats Correspondants
+    a(href="#")
+      .result-card
+        img.z-depth-1(src="https://pbs.twimg.com/media/CxpdUgSXAAASkEZ.jpg")
+      .result-card
+        img.z-depth-1(src="https://pbs.twimg.com/media/CxpdUgSXAAASkEZ.jpg")
+      .result-card
+        img.z-depth-1(src="https://pbs.twimg.com/media/CxpdUgSXAAASkEZ.jpg")
