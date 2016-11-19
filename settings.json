@@ -1,0 +1,12 @@
+{
+  "public": {
+    "env": "development",
+    "loginAppIds": {
+      "facebook": "1754117154845155"
+    },
+  },
+  "mailJetApiPublic": "",
+  "mailJetApiPrivate": "",
+  "mailJetSenderEmailAddress": "",
+  "mailJetSenderName": "",
+}
