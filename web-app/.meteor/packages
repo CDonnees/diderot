@@ -33,3 +33,7 @@ underscore
 dburles:collection-helpers
 http
 harrison:papa-parse
+ejson
+accounts-base
+accounts-password
+nimble:restivus

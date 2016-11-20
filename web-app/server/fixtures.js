@@ -1,5 +1,3 @@
-
-
 Meteor.startup(() => {
   if (Searches.find().count() === 0) {
     _.each(InitialData, ({ search, answer }) => {
@@ -12,6 +10,12 @@ Meteor.startup(() => {
           answersIds: [answerId],
           selectedAnswerId: answerId,
         }, search);
+
+        Answers.update({_id: answerId}, {
+          $set: {
+            shortenedResourceUrl: Answers.shortenUrl(`${Meteor.absoluteUrl()}api/answer/${answerId}`),
+          },
+        });
         Searches.insert(insertableSearch);
       }
     });

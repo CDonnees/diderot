@@ -112,6 +112,12 @@ Searches.validateAnswer = ({ searchId, answerId }) => {
   }, {
     $set: { selectedAnswerId: answerId },
   });
+
+  Answers.update({_id: answerId}, {
+    $set: {
+      shortenedResourceUrl: Answers.shortenUrl(`${Meteor.absoluteUrl()}api/answer/${answerId}`),
+    },
+  });
 };
 
 Searches.validateForModeration = ({ searchId }) => {
@@ -135,9 +141,22 @@ Answers.getGoodTwitterImage = ({
 }) => {
   const answer = Answers.findOne(answerId);
   const imageReq = FormatText.getImageUrl({ text: answer.text, title: answer.title });
-  if (imageReq.content) {
-    console.log(imageReq.content);
-    console.log(EJSON.parse(imageReq.content));
+  const res = EJSON.parse(imageReq.content);
+  if (res.status === 'processing') {
+    return { status: 'processing' };
+  } else if (res.status === 'finished') {
+    const search = Searches.findOne({
+      selectedAnswerId: answerId,
+    });
+    const Answers = Answers.findOne(selectedAnswerId);
+    Answers.update({ _id: answerId },
+      {
+        $set: {
+          finalMessage: `http://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=${encodeURIComponent(search.inputTags.join('+'))}&url=${encodeURIComponent(answer.shortenedResourceUrl)}&via=Diderobot`,
+          finalImage: res.image_url,
+        },
+      });
+    return { status: 'finished' };
   }
 };
 

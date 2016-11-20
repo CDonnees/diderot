@@ -22,7 +22,6 @@ InitialData = _.compact(_.map(parsedCsv.data, (row) => {
         title: row.title,
         text: row.text,
         resourceUrl: row.resourceUrl,
-        shortenedResourceUrl: Answers.shortenUrl(row.resourceUrl),
         // arkId: Answers.extractArkIdFromUrl(row.resourceUrl),
         imageUrl: row.imageUrl,
         finalMessage: row.finalMessage,

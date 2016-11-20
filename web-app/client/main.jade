@@ -41,13 +41,14 @@ template(name="Home")
               h5.results-title Choississez un résultat parmi:
               each answer in newSearch.answers
                 if answer.text
-                  //- Plain text
-                  .result-card.z-depth-1
+                  //- Text Img for plain text
+                  .result-card.z-depth-1(data-index=answer._id)
                     .result-buttons
-                        a(data-index=answer._id href="").js-validate-answer
+                      a(data-index=answer._id href="").js-validate-answer
                           .share-twitter Valider cette phrase
-                    .result-text "#{answer.text}"
-                    .result-image-title #{answer.title}
+                    .result-img-header # Que Dirait Diderot ?
+                    .result-img-text "#{answer.text}"
+                    .result-img-ref #{answer.title}
                 else if answer.finalImage
                   .result-card.z-depth-1
                     //- Image only
@@ -65,15 +66,23 @@ template(name="Home")
             h5.results-title Résultats Correspondants
             each answer in selectedAnswers
               if answer.text
-                //- Plain text
-                .result-card.z-depth-1
+                .result-card.z-depth-1(data-index=answer._id)
+                  //- Text Img for plain text
                   .result-buttons
-                    a(href=answer.finalMessage target="_blank")
-                      .share-twitter Partager sur Twitter
+                    if $not answer.finalImage
+                      .loading(style="display: none;")|#{getGoodTwitterImage answer._id}
+                      a(href="")
+                        .share-twitter Création du partage twitter...
+                    else
+                      a(href=answer.finalMessage target="_blank")
+                        .share-twitter Partager sur Twitter
+                    
                     a(href=answer.resourceUrl target="_blank")
                       .open-gallica Ouvrir sur Gallica
-                  .result-text "#{answer.text}"
-                  .result-image-title #{answer.title}
+                  .result-img-header # Que Dirait Diderot ?
+                  .result-img-text "#{answer.text}"
+                  .result-img-ref #{answer.title}
+
               else if answer.finalImage
                 .result-card.z-depth-1
                   //- Image only
@@ -94,16 +103,7 @@ template(name="Home")
                   img(src=answer.imageUrl)
                   .result-image-title #{answer.title}
 
-            .result-card.z-depth-1
-              //- Text Img
-              .result-buttons
-                a(href=answer.finalMessage target="_blank")
-                  .share-twitter Partager sur Twitter
-                a(href=answer.resourceUrl target="_blank")
-                  .open-gallica Ouvrir sur Gallica
-              .result-img-header # Que Dirait Diderot ?
-              .result-img-text "Vois-tu, mon jeune Trump, tu n'es qu'une nouvelle recrue. Ceci dit pour ton édification, ami Trump, laisse-moi ajouter que je ne plaisantais nullement en exprimant la pensée que nous ne reverrions peut-être plus le Sborg, notre illustre chef."
-              .result-img-ref Les ravageurs de la mer - 1980 - Louis Jacolliot
+            
 
 
     //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")

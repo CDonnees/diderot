@@ -15,7 +15,7 @@ Meteor.methods({
   getGoodTwitterImage({ answerId, height }) {
     if (!this.isSimulation) {
       this.unblock();
-      Answers.getGoodTwitterImage({ answerId, height });
+      return Answers.getGoodTwitterImage({ answerId, height });
     }
   },
 });
