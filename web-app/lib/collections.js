@@ -39,7 +39,9 @@ Answers.schema = new SimpleSchema({
   resourceUrl: { type: String }, // BNF resource
   shortenedResourceUrl: { type: String, optional: true }, // BNF resource
   imageUrl: { type: String, optional: true }, // Image from BNF
-  finalMessage: { type: String, optional: true }, // Tweeted Message
+  finalMessage: { type: String, optional: true },
+  // Tweeted Message: should respect this format:
+  // https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot"
   finalImage: { type: String, optional: true }, //Tweeted Image
 });
 
