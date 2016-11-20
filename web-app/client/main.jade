@@ -11,9 +11,9 @@ template(name="Home")
         //-   <li><a href="collapsible.html">JavaScript</a></li>
         //- </ul>
 
-  .container
+  .fixed-selection-col
     .tags-box.center 
-      h4 Choisis un mot-clé
+      h5 Choisis un mot-clé
       each tag in allTags
         .tag(class="{{#if (isSelectedTag tag)}}tag-active{{/if}}") #{tag}
     
@@ -21,10 +21,10 @@ template(name="Home")
       #infinite-gif INFINITE GIF LOL
     else if state.newSearchId
       .tags-box.center 
-      h4 Votre recherche
+      h5 Votre recherche
       each tag in newSearch.originalTags
         .tag #{tag}
-
+      
 
 
     else
@@ -32,43 +32,59 @@ template(name="Home")
         input#tag-search(placeholder="Ou entres-en un !" type="text" class="validate")
         button#js-send-search(class="btn waves-effect waves-light" type="submit" name="action") Chercher
 
-  .results-container.center
-    if state.newSearchId
-      h4.results-title Choississez un résultat parmi:
-      each answer in newSearch.answers
-        a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
-          if answer.text
-            //- Plain text
-            .result-card.z-depth-1
-              .result-text "#{answer.text}"
-              .result-image-title #{answer.title}
-          else if answer.finalImage
-            .result-card.z-depth-1
-              //- Image only
-              img(src=answer.finalImage)
-          else
-            .result-card.z-depth-1
-              //- Image + title
-              img(src=answer.imageUrl)
-              .result-image-title #{answer.title}
-
-    h4.results-title Résultats Correspondants
-    each answer in selectedAnswers
-      a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
-        if answer.text
-          //- Plain text
-          .result-card.z-depth-1
-            .result-text "#{answer.text}"
-            .result-image-title #{answer.title}
-        else if answer.finalImage
-          .result-card.z-depth-1
-            //- Image only
-            img(src=answer.finalImage)
-        else
-          .result-card.z-depth-1
-            //- Image + title
-            img(src=answer.imageUrl)
-            .result-image-title #{answer.title}
+  .page-container
+    .row
+      .col.s9.offset-s3
+        .results-container.center
+          if state.newSearchId
+            h5.results-title Choississez un résultat parmi:
+            each answer in newSearch.answers
+              a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+                if answer.text
+                  //- Plain text
+                  .result-card.z-depth-1
+                    .result-text "#{answer.text}"
+                    .result-image-title #{answer.title}
+                else if answer.finalImage
+                  .result-card.z-depth-1
+                    //- Image only
+                    img(src=answer.finalImage)
+                else
+                  .result-card.z-depth-1
+                    //- Image + title
+                    img(src=answer.imageUrl)
+                    .result-image-title #{answer.title}
+          h5.results-title Résultats Correspondants
+          each answer in selectedAnswers
+            if answer.text
+              //- Plain text
+              .result-card.z-depth-1
+                .result-buttons
+                  a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+                    .share-twitter Partager sur Twitter
+                  a(href=answer.resourceUrl)
+                    .open-gallica Ouvrir sur Gallica
+                .result-text "#{answer.text}"
+                .result-image-title #{answer.title}
+            else if answer.finalImage
+              .result-card.z-depth-1
+                //- Image only
+                .result-buttons
+                  a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+                    .share-twitter Partager sur Twitter
+                  a(href=answer.resourceUrl)
+                    .open-gallica Ouvrir sur Gallica
+                img(src=answer.finalImage)
+            else
+              .result-card.z-depth-1
+                //- Image + title
+                .result-buttons
+                  a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+                    .share-twitter Partager sur Twitter
+                  a(href=answer.resourceUrl)
+                    .open-gallica Ouvrir sur Gallica
+                img(src=answer.imageUrl)
+                .result-image-title #{answer.title}
 
     //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
     //-   .result-card.z-depth-1

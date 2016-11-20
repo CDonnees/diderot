@@ -12,6 +12,10 @@ TemplateController('Home', {
         originalTags: {
           $in: FlowRouter.getQueryParam('selectedValues') || [],
         },
+      }, {
+        sort: {
+          createdAt: -1,
+        },
       }).map(search => search.goodAnswer());
     },
     isSelectedTag(tag) {
@@ -19,8 +23,8 @@ TemplateController('Home', {
       const index = selectedValues.indexOf(tag);
       return index !== -1;
     },
-    newSearch(id) {
-      return Searches.findOne(id);
+    newSearch() {
+      return Searches.findOne(this.state.newSearchId);
     },
   },
   events: {
@@ -37,8 +41,19 @@ TemplateController('Home', {
       FlowRouter.setQueryParams({ selectedValues });
     },
     'click #js-send-search'(e) {
-      const $input = $(e.target).closest('#tag-search');
+      const $input = this.$('#tag-search');
       const val = $input.val();
+      this.state.searchLoading = true;
+
+      console.log(val);
+      Meteor.call('sendNewSearchAndFetch', { input: val }, (err, res) => {
+        this.state.searchLoading = false;
+        if (err) {
+          console.log(err);
+        } else {
+          this.state.newSearchId = res;
+        }
+      });
     },
   },
 });

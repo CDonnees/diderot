@@ -63,7 +63,7 @@ Searches.fetchAnswers = ({ searchId }) => {
   if (Meteor.isServer) {
     const search = Searches.findOne(searchId);
     if (search) {
-      const goodInputTags = _.isEmpty(search.finalInputTags) ? search.originalInputTags : search.finalInputTags;
+      const goodInputTags = _.isEmpty(search.finalTags) ? search.originalInputTags : search.finalTags;
       const answers = BNF.fetchAnswers({ inputTags: goodInputTags });
       const answersIds = _.map(answers, (answer) => {
         return Answers.insert(answer);
@@ -96,7 +96,7 @@ Searches.newInputAndFetchAnswers = ({ searchId, newInput }) => {
     }, {
       $set: {
         finalInput: goodInput,
-        finalInputTags: Searches.getTagsFromInput(goodInput),
+        finalTags: Searches.getTagsFromInput(goodInput),
       },
     });
 

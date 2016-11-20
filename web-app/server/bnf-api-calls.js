@@ -1,5 +1,6 @@
 import { HTTP } from 'meteor/http';
 import xml2js from 'xml2js';
+import striptags from 'striptags';
 import _ from 'underscore';
 
 function indexOfMin(arr) {
@@ -44,6 +45,7 @@ const sources = [
   {
     name: 'text',
     formatUrl(inputTags) {
+      console.log(inputTags);
       let searchQuery = `text%20all%20"${encodeURIComponent(inputTags[0])}%20"`;
 
       _.each(_.rest(inputTags), (additionalInputTag) => {
@@ -79,12 +81,19 @@ const sources = [
     areWellOCR(quotes) {
       return _.filter(quotes, (quote) => {
         return (quotes.indexOf('~') === -1)
-          && (quotes.indexOf('\\') === -1);
+          && (quotes.indexOf('\\') === -1)
+          && (quotes.indexOf('©') === -1)
+          && (quotes.indexOf(',,,') === -1);
       });
     },
-    haveGoodSizesQuotes(quotes) {
+    haveGoodSizesQuotes(quotes, tags) {
       return _.filter(quotes, (quote) => {
-        return (quote.length > 30) && (quote.length < 330);
+        let quoteWithoutTags = striptags(quote.toLowerCase()).replace(tags[0]);
+        _.each(_.rest(tags), (additionalInputTag) => {
+          quoteWithoutTags = quoteWithoutTags.replace(additionalInputTag);
+        });
+
+        return (quoteWithoutTags.length > 10) && (quoteWithoutTags.length < 300);
       });
     },
     get(inputTags) {
@@ -111,7 +120,7 @@ const sources = [
           if (quotes) {
             const otherwordQuotes = this.containOtherWords(quotes, _.without(inputTags, [minOcWord]));
             const wellOcrQuotes = this.areWellOCR(otherwordQuotes);
-            const goodSizeQuotes = this.haveGoodSizesQuotes(wellOcrQuotes);
+            const goodSizeQuotes = this.haveGoodSizesQuotes(wellOcrQuotes, inputTags);
 
             return _.map(goodSizeQuotes, (quote) => {
               return {
@@ -119,7 +128,7 @@ const sources = [
                 title: recordTitle,
                 imageUrl,
                 arkId,
-                text: quote,
+                text: striptags(quote),
               };
             });
           }

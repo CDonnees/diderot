@@ -27,12 +27,21 @@ nav {
   }
 }
 
-h4 {
+h5 {
   color: $color2;
 }
 
+.fixed-selection-col {
+  position:fixed;
+  background-color: #f1ffff;
+  top:50px;
+  left:0;
+  width:25%;
+  min-height: calc(100vh - 50px);
+}
+
 .tags-box {
-  margin-top:3rem;
+  margin-top:1.5rem;
 }
 
 .search-box {
@@ -43,9 +52,9 @@ h4 {
 
 .tag {
   display: inline-block;
-  margin: 0.5rem;
-  font-size: 1.5rem;
-  padding:0.25rem 1rem;
+  margin: 0.3rem;
+  font-size: 0.9rem;
+  padding:0.1rem 0.5rem;
   border-radius: 2rem;
   background-color: #ddd;
   border:1px solid #ddd;
@@ -83,7 +92,7 @@ h4 {
 
 .results-container {
   width: 100%;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .result-card {
@@ -98,29 +107,40 @@ h4 {
   img {
     width: 100%;
     display: block;
+    min-height: 150px;
     max-height: 300px;
     object-fit: contain;
   }
-  &:after {
-    content: 'Partager sur Twitter';
+  .result-buttons {
     position:absolute;
-    height: 3rem;
+    height: 7rem;
     top:0;
     left:0;
     right:0;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.7);
     opacity: 0;
-    transform: translateY(-3rem);
+    transform: translateY(-7rem);
     transition: 0.2s;
     color: white;
     padding:0.5rem;
+
+    .share-twitter, .open-gallica {
+      color:white;
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding:0.5rem;
+      transition: 0.2s;
+      &:hover {
+        color:$color2;
+      }
+    }
   }
   &:hover {
     box-shadow:0 2px 8px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-  }
-  &:hover:after {
-    opacity: 1;
-    transform: translateY(0);
+    .result-buttons {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
