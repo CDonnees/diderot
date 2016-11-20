@@ -13,7 +13,7 @@ template(name="Home")
 
   .fixed-selection-col
     .tags-box.center 
-      h5 Choisis un mot-clé
+      h5 Derniers mots-clés
       each tag in allTags
         .tag(class="{{#if (isSelectedTag tag)}}tag-active{{/if}}") #{tag}
     .search-box.input-field
@@ -30,7 +30,7 @@ template(name="Home")
               //- Plain text
               .result-card.z-depth-1
                 .result-buttons
-                  a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+                  a(href=answer.finalMessage)
                     .share-twitter Partager sur Twitter
                   a(href=answer.resourceUrl)
                     .open-gallica Ouvrir sur Gallica
@@ -40,7 +40,7 @@ template(name="Home")
               .result-card.z-depth-1
                 //- Image only
                 .result-buttons
-                  a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+                  a(href=answer.finalMessage)
                     .share-twitter Partager sur Twitter
                   a(href=answer.resourceUrl)
                     .open-gallica Ouvrir sur Gallica
@@ -49,7 +49,7 @@ template(name="Home")
               .result-card.z-depth-1
                 //- Image + title
                 .result-buttons
-                  a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+                  a(href=answer.finalMessage)
                     .share-twitter Partager sur Twitter
                   a(href=answer.resourceUrl)
                     .open-gallica Ouvrir sur Gallica
