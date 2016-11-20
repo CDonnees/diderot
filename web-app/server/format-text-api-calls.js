@@ -6,8 +6,8 @@ FormatText = {
     const url = 'http://api.page2images.com/html2image';
     const imageUrlRequest = HTTP.post(url, {
       data: {
-        // p2i_html: `<div style="width: 400px;"><div style="font-family: 'Abril Fatface';padding: 0.5rem;background-color: white;letter-spacing: 0.4rem;text-transform: uppercase;font-size: 0.8rem;color:#333;">#Que Dirait Diderot</div><div style="font-family: 'Abril Fatface';padding: 1.5rem;color:#333;background-color: #84f7fd;">"${text}"</div><div style="font-family: 'Abril Fatface';padding: 0rem 3rem 1rem;background-color: #84f7fd;text-transform: uppercase;font-size:0.8rem;color:#333;">${ref}</div></div>`,
-        p2i_html:encodeURIComponent('<div>Yolo</div>'),
+        // p2i_html: `<div style="width: 400px;"><div style="font-family: 'Abril Fatface';padding: 0.5rem;background-color: white;letter-spacing: 0.4rem;text-transform: uppercase;font-size: 0.8rem;color:#333;"># Que Dirait Diderot ?</div><div style="font-family: 'Abril Fatface';padding: 1.5rem;color:#333;background-color: #84f7fd;">"${text}"</div><div style="font-family: 'Abril Fatface';padding: 0rem 3rem 1rem;background-color: #84f7fd;text-transform: uppercase;font-size:0.8rem;color:#333;">${ref}</div></div>`,
+        p2i_html: encodeURIComponent('<div>Yolo</div>'),
         p2i_key: 'ea8fe257f32c4b77',
       },
     });
