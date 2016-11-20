@@ -1,3 +1,42 @@
 template(name="Home")
-  h1 Que dirait Diderot ?
-  h4 Choississez des tags
+  .navbar-fixed
+    nav
+      .nav-wrapper
+        a(href="#" class="brand-logo")
+          img.nav-logo(src="/QDDiderot-logo.png")
+          span Que Dirait Diderot ?
+        //- <ul id="nav-mobile" class="right hide-on-med-and-down">
+        //-   <li><a href="sass.html">Sass</a></li>
+        //-   <li><a href="badges.html">Components</a></li>
+        //-   <li><a href="collapsible.html">JavaScript</a></li>
+        //- </ul>
+
+  .container
+    .tags-box.center 
+      h4 Choisissez un tag
+      .tag Trump
+      .tag.tag-active ParisAgainstTrump
+      .tag FRAAUS
+      .tag Yolo
+      .tag Swag
+      .tag Rugby
+      .tag Pasdidee
+      .tag Random
+      .tag Brawket
+
+  .results-container.center
+    h4.results-title Résultats Correspondants
+    a(href="#")
+      .result-card.z-depth-1
+        //- Image only
+        img(src="https://pbs.twimg.com/media/CxpdUgSXAAASkEZ.jpg")
+      .result-card.z-depth-1
+        //- Image + title
+        img(src="http://gallica.bnf.fr/ark:/12148/bpt6k934227m/f3.highres")
+        .result-image-title  La Revue illustrée du Chat noir : paraissant le samedi
+      .result-card.z-depth-1
+        //- Plain text
+        .result-text "Vois-tu, mon jeune Trump, tu n'es qu'une nouvelle recrue. Ceci dit pour ton édification, ami Trump, laisse-moi ajouter que je ne plaisantais nullement en exprimant la pensée que nous ne reverrions peut-être plus le Sborg, notre illustre chef."
+        .result-image-title Les ravageurs de la mer - 1980 - Louis Jacolliot
+
+        

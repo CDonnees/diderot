@@ -2,9 +2,105 @@
 // @import "{poetic:materialize-scss}/sass/components/_color.scss";
 // $primary-color: color("blue", "lighten-2");
 
+
+$color1:#4A90E2;
+
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
 
 body {
-  color: red;
+  color: #333;
+  background-color:aliceblue;
+  padding-bottom: 3rem;
+}
+
+nav {
+  background-color:$color1;
+  img.nav-logo {
+    height: 64px;
+    padding: 7px 0px 13px 20px;
+  }
+  span {
+    vertical-align: top;
+  }
+}
+
+.tags-box {
+  margin-top:3rem;
+}
+
+.tag {
+  display: inline-block;
+  margin: 0.5rem;
+  font-size: 1.5rem;
+  padding:0.25rem 1rem;
+  border-radius: 2rem;
+  background-color: #ddd;
+  border:1px solid #ddd;
+  color:$color1;
+  transition:0.2s;
+  cursor: pointer;
+}
+.tag:before {
+  content:'#';
+}
+
+.tag.tag-active {
+  background-color:$color1;
+  color:white;
+  border-color:$color1;
+  transform: scale(1.1);
+}
+  
+// .tag.tag-active ~ .tag {
+//   background-color:#EEE;
+//   color:grey;
+// }
+
+.tags-box .tag:hover {
+  background-color:aliceblue;
+}
+
+.tags-box .tag-active.tag:hover {
+  background-color:$color1;
+}
+
+.results-container {
+  width: 100%;
+  margin-top: 5rem;
+}
+
+.result-card {
+  width: 400px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.2rem;
+  background-color:black;
+  transition:0.2s;
+  img {
+    width: 100%;
+    display: block;
+    max-height: 300px;
+    object-fit: contain;
+  }
+  &:hover {
+    box-shadow:0 2px 8px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  }
+}
+
+.result-image-title {
+  color:#333;
+  font-size:1.2rem;
+  font-weight: 500;
+  background-color:white;
+  text-align: left;
+  padding: 0.5rem;
+  border-top:1px solid #eee;
+}
+
+.result-text {
+  background-color:white;
+  padding:1.5rem 1.5rem;
+  color:#333;
+  text-align:left;
 }
