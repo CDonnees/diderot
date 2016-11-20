@@ -14,35 +14,43 @@ template(name="Home")
   .container
     .tags-box.center 
       h4 Choisis un mot-clé
-      .tag Trump
-      .tag.tag-active ParisAgainstTrump
-      .tag FRAAUS
-      .tag Yolo
-      .tag Swag
-      .tag Rugby
-      .tag Pasdidee
-      .tag Random
-      .tag Brawket
+      each tag in allTags
+        .tag #{tag}
     .search-box.input-field
       input#tag-search(placeholder="Ou entres-en un !" type="text" class="validate")
       button(class="btn waves-effect waves-light" type="submit" name="action") Chercher
 
   .results-container.center
     h4.results-title Résultats Correspondants
-    a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
-      .result-card.z-depth-1
-        //- Image only
-        img(src="https://pbs.twimg.com/media/CxpdUgSXAAASkEZ.jpg")
-    a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
-      .result-card.z-depth-1
-        //- Image + title
-        img(src="http://gallica.bnf.fr/ark:/12148/bpt6k934227m/f3.highres")
-        .result-image-title  La Revue illustrée du Chat noir : paraissant le samedi
-    a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
-      .result-card.z-depth-1
-        //- Plain text
-        .result-text "Vois-tu, mon jeune Trump, tu n'es qu'une nouvelle recrue. Ceci dit pour ton édification, ami Trump, laisse-moi ajouter que je ne plaisantais nullement en exprimant la pensée que nous ne reverrions peut-être plus le Sborg, notre illustre chef."
-        .result-image-title Les ravageurs de la mer - 1980 - Louis Jacolliot
+    each answer in selectedAnswers
+      a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+        if answer.text
+          //- Plain text
+          .result-text "#{answer.text}"
+          .result-image-title #{answer.title}
+        else if answer.finalImage
+          .result-card.z-depth-1
+            //- Image only
+            img(src=answer.finalImage)
+        else
+          //- Image + title
+          img(src=answer.imageUrl)
+          .result-image-title #{answer.imageUrl}
+
+    //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+    //-   .result-card.z-depth-1
+    //-     //- Image only
+    //-     img(src="https://pbs.twimg.com/media/CxpdUgSXAAASkEZ.jpg")
+    //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+    //-   .result-card.z-depth-1
+    //-     //- Image + title
+    //-     img(src="http://gallica.bnf.fr/ark:/12148/bpt6k934227m/f3.highres")
+    //-     .result-image-title  La Revue illustrée du Chat noir : paraissant le samedi
+    //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+    //-   .result-card.z-depth-1
+    //-     //- Plain text
+    //-     .result-text "Vois-tu, mon jeune Trump, tu n'es qu'une nouvelle recrue. Ceci dit pour ton édification, ami Trump, laisse-moi ajouter que je ne plaisantais nullement en exprimant la pensée que nous ne reverrions peut-être plus le Sborg, notre illustre chef."
+    //-     .result-image-title Les ravageurs de la mer - 1980 - Louis Jacolliot
 
   //-Template for HTML to img    
   //- <div style="width: 400px;">
