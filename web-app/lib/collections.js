@@ -65,39 +65,50 @@ Searches.fetchAnswers = ({ searchId }) => {
     if (search) {
       const goodInputTags = _.isEmpty(search.finalInputTags) ? search.originalInputTags : search.finalInputTags;
       const answers = BNF.fetchAnswers({ inputTags: goodInputTags });
-      _.each(answers, (answer) => {
-        Answers.insert(answer);
+      const answersIds = _.map(answers, (answer) => {
+        return Answers.insert(answer);
+      });
+      Searches.update({ _id: searchId }, {
+        $set: {
+          answersIds,
+        },
       });
     }
   }
 };
 
 Searches.createSearch = ({ input }) => {
-  Searches.insert({
+  return Searches.insert({
     originalInput: input,
     originalTags: Searches.getTagsFromInput(input),
   });
 };
 
 Searches.newInputAndFetchAnswers = ({ searchId, newInput }) => {
-  Searches.update({
-    _id: searchId,
-  }, {
-    $set: {
-      finalInput: {
-        newInput,
-      },
-    },
-  });
+  let goodInput = newInput;
+  if (!newInput) {
+    goodInput = Searches.findOne(searchId).originalInput;
+  }
 
-  Searches.fetchAnswers({ searchId });
+  if (goodInput) {
+    Searches.update({
+      _id: searchId,
+    }, {
+      $set: {
+        finalInput: goodInput,
+        finalInputTags: Searches.getTagsFromInput(goodInput),
+      },
+    });
+
+    Searches.fetchAnswers({ searchId });
+  }
 };
 
 Searches.validateAnswer = ({ searchId, answerId }) => {
   Searches.update({
     _id: searchId,
   }, {
-    $set: { selectedAnswerId: answerId, },
+    $set: { selectedAnswerId: answerId },
   });
 };
 

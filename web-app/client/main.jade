@@ -16,11 +16,42 @@ template(name="Home")
       h4 Choisis un mot-clé
       each tag in allTags
         .tag(class="{{#if (isSelectedTag tag)}}tag-active{{/if}}") #{tag}
-    .search-box.input-field
-      input#tag-search(placeholder="Ou entres-en un !" type="text" class="validate")
-      button(class="btn waves-effect waves-light" type="submit" name="action") Chercher
+    
+    if state.searchLoading
+      #infinite-gif INFINITE GIF LOL
+    else if state.newSearchId
+      .tags-box.center 
+      h4 Votre recherche
+      each tag in newSearch.originalTags
+        .tag #{tag}
+
+
+
+    else
+      .search-box.input-field
+        input#tag-search(placeholder="Ou entres-en un !" type="text" class="validate")
+        button#js-send-search(class="btn waves-effect waves-light" type="submit" name="action") Chercher
 
   .results-container.center
+    if state.newSearchId
+      h4.results-title Choississez un résultat parmi:
+      each answer in newSearch.answers
+        a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+          if answer.text
+            //- Plain text
+            .result-card.z-depth-1
+              .result-text "#{answer.text}"
+              .result-image-title #{answer.title}
+          else if answer.finalImage
+            .result-card.z-depth-1
+              //- Image only
+              img(src=answer.finalImage)
+          else
+            .result-card.z-depth-1
+              //- Image + title
+              img(src=answer.imageUrl)
+              .result-image-title #{answer.title}
+
     h4.results-title Résultats Correspondants
     each answer in selectedAnswers
       a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")

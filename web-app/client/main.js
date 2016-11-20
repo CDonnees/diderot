@@ -1,7 +1,11 @@
 TemplateController('Home', {
+  state: {
+    newSearchId: null,
+    searchLoading: false,
+  },
   helpers: {
     allTags() {
-      return _.uniq(_.flatten(Searches.find({ wasModerated: true }).map(search => search.originalTags)));
+      return _.uniq(_.flatten(Searches.find({ wasModerated: true, selectedAnswerId: { $ne: null } }).map(search => search.originalTags)));
     },
     selectedAnswers() {
       return Searches.find({
@@ -14,6 +18,9 @@ TemplateController('Home', {
       const selectedValues = FlowRouter.getQueryParam('selectedValues') || [];
       const index = selectedValues.indexOf(tag);
       return index !== -1;
+    },
+    newSearch(id) {
+      return Searches.findOne(id);
     },
   },
   events: {
@@ -28,6 +35,10 @@ TemplateController('Home', {
         selectedValues.push(val);
       }
       FlowRouter.setQueryParams({ selectedValues });
+    },
+    'click #js-send-search'(e) {
+      const $input = $(e.target).closest('#tag-search');
+      const val = $input.val();
     },
   },
 });
