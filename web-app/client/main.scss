@@ -31,6 +31,15 @@ h5 {
   color: $color2;
 }
 
+.fixed-selection-col {
+  position:fixed;
+  background-color: #f1ffff;
+  top:50px;
+  left:0;
+  width:25%;
+  min-height: calc(100vh - 50px);
+}
+
 .tags-box {
   margin-top:1.5rem;
 }
@@ -44,8 +53,8 @@ h5 {
 .tag {
   display: inline-block;
   margin: 0.3rem;
-  font-size: 1.3rem;
-  padding:0.25rem 1rem;
+  font-size: 0.9rem;
+  padding:0.1rem 0.5rem;
   border-radius: 2rem;
   background-color: #ddd;
   border:1px solid #ddd;
