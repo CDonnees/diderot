@@ -13,6 +13,7 @@ Searches.schema = new SimpleSchema({
   originalInput: { type: String }, // Hashtags
   originalTags: { type: [String], optional: true },
   finalInput: { type: String, optional: true },
+  finalTags: { type: [String], optional: true },
   searchField: { type: String, optional: true }, // Si ca a ete cherche dans text titre, etc
   filters: { type: String, optional: true }, // si ca ete restreint a image, livres ou aucun
   answersIds: { type: [String], defaultValue: [] },
@@ -62,8 +63,8 @@ Searches.fetchAnswers = ({ searchId }) => {
   if (Meteor.isServer) {
     const search = Searches.findOne(searchId);
     if (search) {
-      const goodInput = _.isEmpty(search.finalInput) ? search.originalInput : search.finalInput;
-      const answers = BNF.fetchAnswers({ input: goodInput });
+      const goodInputTags = _.isEmpty(search.finalInputTags) ? search.originalInputTags : search.finalInputTags;
+      const answers = BNF.fetchAnswers({ inputTags: goodInputTags });
       _.each(answers, (answer) => {
         Answers.insert(answer);
       });
