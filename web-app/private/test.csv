@@ -1,0 +1,62 @@
+originalInput,finalInput,searchField,filters,title,resourceUrl,finalMessage,finalImage
+#FRAAUS,France Australie,tout,image,"Tennis France/Australie au stade Roland
+ Garros : Lacoste/Crawford se serrant la main :
+ [photographie de presse] / Agence Mondial",http://gallica.bnf.fr/ark:/12148/btv1b9052850z.r=France%20australie?rk=64378;0,"#FRAAUS par le
+ @Diderobot : 
+http://bit.ly/france-australie … 
+#HackathonBnF 
+#Gallica @laBnF
+ #QueDiraitDiderot",
+#ParisAgainstTrump,Trump,tout,Filtre : aucun,/,http://gallica.bnf.fr/ark:/12148/bpt6k5714514z.r=trump?rk=85837;2,"#QueDiraitDiderot sur
+ #ParisAgainstTrump +
+ #Trump ? par le
+ @Diderobot : 
+http://bit.ly/2eRgECq  
+#HackathonBnF #Gallica @laBnF",
+,,,,,,,
+#PSGFCN,Football,Champ : tout,Filtre : livres,/,http://gallica.bnf.fr/ark:/12148/bpt6k9648193v/f341.image.r=roger%20caillois%201957%20football?rk=21459;2,"#PSGFCN par
+ @Diderobot : 
+http://bit.ly/bnf-football  
+@laBnF @GallicaBnF 
+#HackathonBnF 
+#QueDiraitDiderot",
+,,,aucuun,,,,
+,Bière(tout) + Par site de documents numériques (Gallica),,,,"http://gallica.bnf.fr/ark:/12148/bpt6k96713365/f9.item.r=bi%C3%A8re.zoom , http://gallica.bnf.fr/ark:/12148/btv1b53027098j.r=bi%C3%A8re?rk=85837;2, http://gallica.bnf.fr/ark:/12148/btv1b90130097.r=bi%C3%A8re?rk=21459;2",,
+,,,,,,,
+,,,,,,,
+élection,élection,Sujet,"Images / Cartes / Manuscrits, site de consultation Gallica","9/1/20, derniers préparatifs [de l'élection présidentielle] à la salle du Congrès à Versailles : [photographie de presse] / [Agence Rol]",http://gallica.bnf.fr/ark:/12148/btv1b530355965?rk=171674;4,,
+élections,élections,Sujet,"Images / Cartes / Manuscrits, site de consultation Gallica",La duchesse d'Atholl en tournée électorale : [photographie de presse] / [Agence Rol] ,http://gallica.bnf.fr/ark:/12148/btv1b53121014n?rk=107296;4,,
+élections,élections,Sujet,"Images / Cartes / Manuscrits, site de consultation Gallica","Affiches électorales représentant Briand
+Sujet : Affiches politiques
+Description : Image de presse",http://gallica.bnf.fr/ark:/12148/btv1b9051389s?rk=278971;2,,
+élections,élections,Sujet,"Images / Cartes / Manuscrits, site de consultation Gallica","Titre : Installation des isoloirs pour les élections
+Sujet",http://gallica.bnf.fr/ark:/12148/btv1b90513854?rk=300430;4,,
+résultat élections,"Résultat, Élections",Titre,"Images / Cartes / Manuscrits, site de consultation Gallica","Titre : Déc. 1923, comment un veilleur de nuit apprit par T. S. F. le résultat des élections anglaises : [photographie de presse] / [Agence Rol]",http://gallica.bnf.fr/ark:/12148/btv1b53122791m?rk=21459;2,,
+résultat élections,"Résultat, Élections",Titre,"Images / Cartes / Manuscrits, site de consultation Gallica",Elections présidentielles à Versailles : la foule attendant le résultat dans la cour du château : [photographie de presse] / Agence Meurisse,http://gallica.bnf.fr/ark:/12148/btv1b9024236d?rk=64378;0,,
+résultat élections,"Résultat, Élections",Titre,"Images / Cartes / Manuscrits, site de consultation Gallica","Titre : ""L'Empereur de Russie apprenant le résultat des élections de Paris accorde au courrier une gratification extraordinaire"", qui consiste en un coup de pied bien appliqué. A dr., et le n° 149 : [estampe]",http://gallica.bnf.fr/ark:/12148/btv1b530189444?rk=107296;4,,
+ ,,,,,,,
+,,,,,,,
+,,,,,,,
+#journeemondialedestoilettes,Sujet: Toilettes publiques,,,,http://gallica.bnf.fr/ark:/12148/btv1b10516408h?rk=42918;4,,
+,,,,,,,
+,,,,,,,
+#ParisAgainstTrump,Tocqueville Rébellion et résistance,Tout,Aucun,/,http://gallica.bnf.fr/ark:/12148/bpt6k37010k/f336.image.r=%22je%20crois%20qu'il%20y%20a%20des%20r%C3%A9sistances%22?rk=21459;2,"#ParisAgainstTrump 
+par @Diderobot : 
+http://bit.ly/BNF-TOCQUEVILLE  @laBnF @GallicaBnf #HackathonBnF #QueDiraitDiderot",
+,,,,,,,
+,,,,,,,
+#vigilanceorange,Tout: Tempête > Filtre: Image,,,"[Neptune apaisant la tempête] : [estampe]
+ ([2nd état]) / [Marc-Antoine Raimondi] : 3ème résultat",http://gallica.bnf.fr/ark:/12148/btv1b69532834.r=tempete?rk=64378;0,,
+,,,,,,,
+,,,,,,,
+Afrique,Sujet : Afrique --> Autocomplétion Afrique -- Ouest -- Côtes,,,,http://gallica.bnf.fr/services/engine/search/sru?operation=searchRetrieve&version=1.2&startRecord=0&maximumRecords=15&page=1&collapsing=true&exactSearch=false&query=dc.subject%20all%20%22Afrique%20--%20Ouest%20--%20C%C3%B4tes%22%20%20and%20%28provenance%20adj%20%22bnf.fr%22%29&filter=dc.type%20all%20%22carte%22,,
+,Sujet : Horoscope,,,,http://gallica.bnf.fr/ark:/12148/btv1b84121180?rk=21459;2,,
+,,,,,,,
+,,,,,,,
+,,,,,,,
+savon (alep),Savon,,,,http://gallica.bnf.fr/services/engine/search/sru?operation=searchRetrieve&version=1.2&startRecord=0&maximumRecords=15&page=1&collapsing=true&exactSearch=false&query=dc.subject%20all%20%22savon%22%20%20and%20%28provenance%20adj%20%22bnf.fr%22%29&filter=dc.type%20all%20%22image%22#resultat-id-9 ; http://gallica.bnf.fr/ark:/12148/btv1b6944245g?rk=42918;4,,
+,Syrie,,,,http://gallica.bnf.fr/services/engine/search/sru?operation=searchRetrieve&version=1.2&startRecord=0&maximumRecords=15&page=1&collapsing=true&exactSearch=false&query=dc.subject%20all%20%22Syrie%22%20%20and%20%28provenance%20adj%20%22bnf.fr%22%29&filter=dc.type%20all%20%22image%22,,
+,Oiseaux,,,"[Manufacture Jacquemart et Bénard. Papier à motif répétitif. Motif répétitif en arabesque (?), à deux chemins : scène de genre (une femme montée sur un âne près d'un berger qui garde sa vache) alternant avec une corbeille tressée garnie de fruits] : [papier peint] - 1799",http://gallica.bnf.fr/ark:/12148/btv1b69004571?rk=257512;0,,
+#Diderobot,Mythe de Narcisse,,,"Le mythe de Narcisse Narcisse était, selon la mythologie grecque, un jeune homme d'une beauté si grande que toutes les jeunes filles rêvaient de lui appartenir, mais il n'en regardait aucune, demeurant indifférent aux avances des plus séduisantes, et les adolescentes au coeur brisé ne parvenaient pas davantage à l'émouvoir",http://gallica.bnf.fr/ark:/12148/bpt6k54522880/f251.image.r=%22mythe%20de%20narcisse%22?rk=128756;0,,
+#Baccalauréat,Baccalauréat,,,,,,
+#hackaton,marathon,,,,http://gallica.bnf.fr/ark:/12148/btv1b9034297c.r=Le%20marathon?rk=300430;4,,
