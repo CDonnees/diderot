@@ -12,33 +12,38 @@ template(name="Home")
         //- </ul>
 
   .fixed-selection-col
+    if state.searchLoading
+      .tags-box.center 
+        h5 Votre recherche
+        .tag Chargement...
+    else if state.newSearchId
+      .tags-box.center 
+        h5 Votre recherche
+        each tag in newSearch.originalTags
+          .tag #{tag}
+
+    else
+      .tags-box.center 
+        h5 Votre recherche
+      .search-box.input-field
+        input#tag-search(placeholder="Entre tes mots-clefs !" type="text" class="validate")
+        button#js-send-search(class="btn waves-effect waves-light" type="submit" name="action") Chercher
     .tags-box.center 
       h5 Derniers mots-clés
       each tag in allTags
         .tag(class="{{#if (isSelectedTag tag)}}tag-active{{/if}}") #{tag}
-    
-    if state.searchLoading
-      #infinite-gif INFINITE GIF LOL
-    else if state.newSearchId
-      .tags-box.center 
-      h5 Votre recherche
-      each tag in newSearch.originalTags
-        .tag #{tag}
-
-    else
-      .search-box.input-field
-        input#tag-search(placeholder="Ou entres-en un !" type="text" class="validate")
-        button#js-send-search(class="btn waves-effect waves-light" type="submit" name="action") Chercher
 
   .page-container
     .row
       .col.s9.offset-s3
         .results-container.center
           if state.newSearchId
-            if $eq newSearch.answers.length 0
+            if $eq newSearch.answers.count 0
               h5.results-title Votre requête n'a pas donné de résultat... Réessayez !
+              p.js-cancel(style="text-decoration:underline;  color: gray;") Retour
             else
               h5.results-title Choississez un résultat parmi:
+              p.js-cancel(style="text-decoration:underline;  color: gray;") Retour
               each answer in newSearch.answers
                 if answer.text
                   //- Text Img for plain text
@@ -60,8 +65,9 @@ template(name="Home")
                     .result-image-title #{answer.title}
 
           
-          if $eq selectedAnswer.count 0
-            h5.results-title Faites une recherche ou cliquez sur des tags !
+          if $eq selectedAnswers.length 0
+            if $not state.newSearchId
+              h5.results-title Faites une recherche ou cliquez sur des tags !
           else
             h5.results-title Résultats Correspondants
             each answer in selectedAnswers

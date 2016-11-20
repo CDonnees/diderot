@@ -1,4 +1,4 @@
-const textCsv = Assets.getText('test3.csv');
+const textCsv = Assets.getText('prod1.csv');
 // console.log(textCsv);
 
 const parsedCsv = Papa.parse(textCsv, {

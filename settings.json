@@ -1,12 +1,7 @@
 {
-  "public": {
-    "env": "development",
-    "loginAppIds": {
-      "facebook": "1754117154845155"
-    },
-  },
-  "mailJetApiPublic": "",
-  "mailJetApiPrivate": "",
-  "mailJetSenderEmailAddress": "",
-  "mailJetSenderName": "",
+  "galaxy.meteor.com": { 
+    "env": { 
+      "MONGO_URL": "mongodb://user:diderot@ds159217.mlab.com:59217/diderot" 
+    }
+  }
 }

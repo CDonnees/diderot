@@ -140,7 +140,7 @@ Answers.getGoodTwitterImage = ({
   height,
 }) => {
   const answer = Answers.findOne(answerId);
-  const imageReq = FormatText.getImageUrl({ text: answer.text, title: answer.title });
+  const imageReq = FormatText.getImageUrl({ text: answer.text, title: answer.title, height, });
   const res = EJSON.parse(imageReq.content);
   if (res.status === 'processing') {
     return { status: 'processing' };
@@ -148,11 +148,10 @@ Answers.getGoodTwitterImage = ({
     const search = Searches.findOne({
       selectedAnswerId: answerId,
     });
-    const Answers = Answers.findOne(selectedAnswerId);
     Answers.update({ _id: answerId },
       {
         $set: {
-          finalMessage: `http://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=${encodeURIComponent(search.inputTags.join('+'))}&url=${encodeURIComponent(answer.shortenedResourceUrl)}&via=Diderobot`,
+          finalMessage: `http://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=${encodeURIComponent(search.originalTags.map(tag => `#${tag}`).join(' et '))}&url=${encodeURIComponent(answer.shortenedResourceUrl)}&via=Diderobot`,
           finalImage: res.image_url,
         },
       });

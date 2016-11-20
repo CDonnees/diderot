@@ -1,20 +1,29 @@
 TemplateController('Home', {
+  onCreated(){
+    // this.autorun(() => {
+    //   this.subscribe('lastSearchesAndTheirAnswers');
+    //   this.subscribe('myCurrentSearchAndItsAnswers', this.state.newSearchId);
+    // });
+  },
   state: {
     newSearchId: null,
     searchLoading: false,
   },
   helpers: {
     allTags() {
-      return _.uniq(_.flatten(Searches.find({ wasModerated: true, selectedAnswerId: { $ne: null } }).map(search => search.originalTags)));
+      return _.uniq(_.flatten(Searches.find({
+        wasModerated: true, selectedAnswerId: { $ne: null },
+      }, {
+        sort: {
+          createdAt: -1,
+        },
+        limit: 20,
+      }).map(search => search.originalTags)));
     },
     selectedAnswers() {
       return Searches.find({
         originalTags: {
           $in: FlowRouter.getQueryParam('selectedValues') || [],
-        },
-      }, {
-        sort: {
-          createdAt: -1,
         },
       }).map(search => search.goodAnswer());
     },
@@ -42,7 +51,7 @@ TemplateController('Home', {
               console.log(err);
             } else {
               if (res.status === "processing") {
-                Meteor.setTimeout(callItAgainSam, 3000);
+                Meteor.setTimeout(callItAgainSam, 1000);
               }
             }
           });
@@ -90,6 +99,9 @@ TemplateController('Home', {
 
       FlowRouter.setQueryParams({ selectedValues });
       this.state.newSearchId = false;
+    },
+    'click .js-cancel'(e) {
+      this.state.newSearchId = null;
     },
   },
 });
