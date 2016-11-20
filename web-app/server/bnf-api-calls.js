@@ -1,62 +1,133 @@
 import { HTTP } from 'meteor/http';
-import { parseString } from 'xml2js';
+import xml2js from 'xml2js';
 import _ from 'underscore';
 
+function indexOfMin(arr) {
+  if (arr.length === 0) {
+    return -1;
+  }
+
+  let min = arr[0];
+  let minIndex = 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < min) {
+      minIndex = i;
+      min = arr[i];
+    }
+  }
+
+  return minIndex;
+}
+
+const parseString = xml2js.parseString;
 /*
   To test in the shell: $ meteor shell:
   NPM
  */
 const parseXML = ({ url }) => {
-  const xml = HTTP.get(url).content;
-  // console.log(xml);
-  // console.log("=======");
-  // console.log(parseString(xml));
-  return Meteor.wrapAsync(parseString)(xml);
+  try {
+    const req = HTTP.get(url);
+    const xml = req.content;
+
+    try {
+      return Meteor.wrapAsync(parseString, xml2js)(xml);
+    } catch(e) {
+      console.log(e);
+    }
+  } catch(e) {
+    console.log('ERREUR URL', url);
+  }
 };
 
 const sources = [
   {
     name: 'text',
     formatUrl(inputTags) {
-      let searchQuery = `text%20all%20"${encodeURIComponent(inputTags.shift())}%20"`;
-      console.log(inputTags);
-      _.each(inputTags, (additionalInputTag) => {
+      let searchQuery = `text%20all%20"${encodeURIComponent(inputTags[0])}%20"`;
+
+      _.each(_.rest(inputTags), (additionalInputTag) => {
         searchQuery = searchQuery + `+and%20text%20all%20"${encodeURIComponent(additionalInputTag)}"%20`;
       });
-      console.log(searchQuery);
 
       return `http://gallica.bnf.fr/SRU?operation=searchRetrieve&exactSearch=false&collapsing=true&version=1.2&query=(${searchQuery})%20%20and%20(dc.language%20all%20%22fre%22)%20and%20(dc.type%20all%20%22manuscrit%22%20or%20dc.type%20all%20%22monographie%22%20or%20dc.type%20all%20%22fascicule%22)%20and%20(ocr.quality%20all%20%22texte%20disponible%22)%20and%20(provenance%20adj%20%22bnf.fr%22)&suggest=10`;
     },
     getTagOccurences(arkId, tag) {
       const url = `http://gallica.bnf.fr/services/ContentSearch?ark=${arkId}&query=${encodeURIComponent(tag)}`;
+      console.log(url);
       const xml = parseXML({ url });
-      console.log(xml);
+      if (xml) {
+        return parseInt(xml.results.$.countResults);
+      }
+      return 10000000;
+    },
+    getQuotesFromTag(arkId, tag) {
+      const url = `http://gallica.bnf.fr/services/ContentSearch?ark=${arkId}&query=${encodeURIComponent(tag)}`;
+      console.log(url);
+      const xml = parseXML({ url });
+      if (xml) {
+        // console.log(xml.results.items[0]);
+        const res = _.map(xml.results.items[0].item, item => item.content[0]);
+        return res;
+      }
+    },
+    containOtherWords(quotes, otherWords) {
+      return _.filter(quotes, (quote) => {
+        return _.every(otherWords, otherWord => quote.indexOf(otherWord) !== -1);
+      });
+    },
+    areWellOCR(quotes) {
+      return _.filter(quotes, (quote) => {
+        return (quotes.indexOf('~') === -1)
+          && (quotes.indexOf('\\') === -1);
+      });
+    },
+    haveGoodSizesQuotes(quotes) {
+      return _.filter(quotes, (quote) => {
+        return (quote.length > 30) && (quote.length < 330);
+      });
     },
     get(inputTags) {
       console.log('=========');
       const url = this.formatUrl(inputTags);
-      console.log(url);
 
       // Retrieve all contents that contain all the words
       const contentListXML = parseXML({ url });
-      // console.log(contentListXML);
-      const documents = _.map(contentListXML['srw:searchRetrieveResponse']['srw:records'][0]['srw:record'], (record) => {
-        console.log(record['srw:recordData'][0]['oai_dc:dc']);
+
+      const documents = _.compact(_.flatten(_.map(contentListXML['srw:searchRetrieveResponse']['srw:records'][0]['srw:record'], (record) => {
         const recordUrl = record['srw:recordData'][0]['oai_dc:dc'][0]['dc:identifier'][0];
         const recordTitle = record['srw:recordData'][0]['oai_dc:dc'][0]['dc:title'][0];
-        const arkId = _.last(recordUrl.split('/'));
-        console.log(arkId);
+        const imageUrl = record['srw:extraRecordData'][0]['thumbnail'][0];
 
-        // const ocs = _.map(inputTags, tag => this.getTagOccurences(arkId, tag));
+        const splitUrl = recordUrl.split('/');
+        const arkId = _.last(splitUrl);
+        if (arkId !== 'date') {
+          // Periodics have a different behaviour
+          const ocs = _.map(inputTags, tag => this.getTagOccurences(arkId, tag));
 
-        return {
-          // arkId,
-          // oc: _.map(inputTags, tag => this.getTagOccurences),
-        };
-      });
-      
+          const minOcWord = inputTags[indexOfMin(ocs)];
+
+          const quotes = this.getQuotesFromTag(arkId, minOcWord);
+          if (quotes) {
+            const otherwordQuotes = this.containOtherWords(quotes, _.without(inputTags, [minOcWord]));
+            const wellOcrQuotes = this.areWellOCR(otherwordQuotes);
+            const goodSizeQuotes = this.haveGoodSizesQuotes(wellOcrQuotes);
+
+            return _.map(goodSizeQuotes, (quote) => {
+              return {
+                recordUrl,
+                recordTitle,
+                imageUrl,
+                arkId,
+                ocs,
+              };
+            });
+          }
+        }
+      }), true));
+
       // console.log(documents);
-      return [];
+      return documents;
     },
   },
 ];
