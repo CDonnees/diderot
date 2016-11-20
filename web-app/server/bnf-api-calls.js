@@ -115,11 +115,11 @@ const sources = [
 
             return _.map(goodSizeQuotes, (quote) => {
               return {
-                recordUrl,
-                recordTitle,
+                resourceUrl: recordUrl,
+                title: recordTitle,
                 imageUrl,
                 arkId,
-                ocs,
+                text: quote,
               };
             });
           }
