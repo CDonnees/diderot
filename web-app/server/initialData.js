@@ -1,4 +1,4 @@
-const textCsv = Assets.getText('test.csv');
+const textCsv = Assets.getText('test2.csv');
 // console.log(textCsv);
 
 const parsedCsv = Papa.parse(textCsv, {
@@ -20,6 +20,7 @@ InitialData = _.compact(_.map(parsedCsv.data, (row) => {
       },
       answer: {
         title: row.title,
+        text: row.text,
         resourceUrl: row.resourceUrl,
         shortenedResourceUrl: Answers.shortenUrl(row.resourceUrl),
         // arkId: Answers.extractArkIdFromUrl(row.resourceUrl),
