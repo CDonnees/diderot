@@ -55,6 +55,17 @@ TemplateController('Home', {
         }
       });
     },
+    'click .js-validate-answer'(e) {
+      const $answer = this.$(e.target).closest('.js-validate-answer');
+      const answerId = $answer.data('index');
+      Meteor.call('validateNewSearchAnswer', { searchId: this.state.newSearchId, answerId });
+      const search = Searches.findOne(this.state.newSearchId);
+      const selectedValues = FlowRouter.getQueryParam('selectedValues') || [];
+      _.each(search.originalTags, tag => selectedValues.push(tag));
+
+      FlowRouter.setQueryParams({ selectedValues });
+      this.state.newSearchId = false;
+    },
   },
 });
 

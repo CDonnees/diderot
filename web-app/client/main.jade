@@ -24,8 +24,6 @@ template(name="Home")
       h5 Votre recherche
       each tag in newSearch.originalTags
         .tag #{tag}
-      
-
 
     else
       .search-box.input-field
@@ -37,12 +35,17 @@ template(name="Home")
       .col.s9.offset-s3
         .results-container.center
           if state.newSearchId
-            h5.results-title Choississez un résultat parmi:
-            each answer in newSearch.answers
-              a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
+            if $eq newSearch.answers.length 0
+              h5.results-title Votre requête n'a pas donné de résultat... Réessayez !
+            else
+              h5.results-title Choississez un résultat parmi:
+              each answer in newSearch.answers
                 if answer.text
                   //- Plain text
                   .result-card.z-depth-1
+                    .result-buttons
+                        a(data-index=answer._id href="").js-validate-answer
+                          .share-twitter Valider cette phrase
                     .result-text "#{answer.text}"
                     .result-image-title #{answer.title}
                 else if answer.finalImage
@@ -54,37 +57,42 @@ template(name="Home")
                     //- Image + title
                     img(src=answer.imageUrl)
                     .result-image-title #{answer.title}
-          h5.results-title Résultats Correspondants
-          each answer in selectedAnswers
-            if answer.text
-              //- Plain text
-              .result-card.z-depth-1
-                .result-buttons
-                  a(href=answer.finalMessage)
-                    .share-twitter Partager sur Twitter
-                  a(href=answer.resourceUrl)
-                    .open-gallica Ouvrir sur Gallica
-                .result-text "#{answer.text}"
-                .result-image-title #{answer.title}
-            else if answer.finalImage
-              .result-card.z-depth-1
-                //- Image only
-                .result-buttons
-                  a(href=answer.finalMessage)
-                    .share-twitter Partager sur Twitter
-                  a(href=answer.resourceUrl)
-                    .open-gallica Ouvrir sur Gallica
-                img(src=answer.finalImage)
-            else
-              .result-card.z-depth-1
-                //- Image + title
-                .result-buttons
-                  a(href=answer.finalMessage)
-                    .share-twitter Partager sur Twitter
-                  a(href=answer.resourceUrl)
-                    .open-gallica Ouvrir sur Gallica
-                img(src=answer.imageUrl)
-                .result-image-title #{answer.title}
+
+          
+          if $eq selectedAnswer.count 0
+            h5.results-title Faites une recherche ou cliquez sur des tags !
+          else
+            h5.results-title Résultats Correspondants
+            each answer in selectedAnswers
+              if answer.text
+                //- Plain text
+                .result-card.z-depth-1
+                  .result-buttons
+                    a(href=answer.finalMessage target="_blank")
+                      .share-twitter Partager sur Twitter
+                    a(href=answer.resourceUrl target="_blank")
+                      .open-gallica Ouvrir sur Gallica
+                  .result-text "#{answer.text}"
+                  .result-image-title #{answer.title}
+              else if answer.finalImage
+                .result-card.z-depth-1
+                  //- Image only
+                  .result-buttons
+                    a(href=answer.finalMessage target="_blank")
+                      .share-twitter Partager sur Twitter
+                    a(href=answer.resourceUrl target="_blank")
+                      .open-gallica Ouvrir sur Gallica
+                  img(src=answer.finalImage)
+              else
+                .result-card.z-depth-1
+                  //- Image + title
+                  .result-buttons
+                    a(href=answer.finalMessage target="_blank")
+                      .share-twitter Partager sur Twitter
+                    a(href=answer.resourceUrl target="_blank")
+                      .open-gallica Ouvrir sur Gallica
+                  img(src=answer.imageUrl)
+                  .result-image-title #{answer.title}
 
     //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
     //-   .result-card.z-depth-1

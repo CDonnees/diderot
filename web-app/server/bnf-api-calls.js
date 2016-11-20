@@ -75,25 +75,31 @@ const sources = [
     },
     containOtherWords(quotes, otherWords) {
       return _.filter(quotes, (quote) => {
-        return _.every(otherWords, otherWord => quote.indexOf(otherWord) !== -1);
+        return _.every(otherWords, otherWord => quote.toLowerCase().indexOf(otherWord.toLowerCase()) !== -1);
       });
     },
     areWellOCR(quotes) {
       return _.filter(quotes, (quote) => {
-        return (quotes.indexOf('~') === -1)
-          && (quotes.indexOf('\\') === -1)
-          && (quotes.indexOf('©') === -1)
-          && (quotes.indexOf(',,,') === -1);
+        const doesNotContainsWeirdChars =
+          (quote.indexOf('~') === -1)
+          && (quote.indexOf('\\\\') === -1)
+          && (quote.indexOf('©') === -1)
+          && (quote.indexOf(';;') === -1)
+          && (quote.indexOf(',,') === -1);
+
+        const doesNotContainTooManyParenthesis = quote.split('(').length < 2 || quote.split(')').length < 2;
+
+        return doesNotContainsWeirdChars && doesNotContainTooManyParenthesis;
       });
     },
     haveGoodSizesQuotes(quotes, tags) {
       return _.filter(quotes, (quote) => {
-        let quoteWithoutTags = striptags(quote.toLowerCase()).replace(tags[0]);
+        let quoteWithoutTags = striptags(quote.toLowerCase()).replace(tags[0].toLowerCase(), '');
         _.each(_.rest(tags), (additionalInputTag) => {
-          quoteWithoutTags = quoteWithoutTags.replace(additionalInputTag);
+          quoteWithoutTags = quoteWithoutTags.replace(additionalInputTag, '');
         });
 
-        return (quoteWithoutTags.length > 10) && (quoteWithoutTags.length < 300);
+        return (quoteWithoutTags.length > 30) && (quoteWithoutTags.length < 280);
       });
     },
     get(inputTags) {
@@ -143,6 +149,6 @@ const sources = [
 
 BNF = {
   fetchAnswers({ inputTags }) {
-    return _.flatten(_.map(sources, source => source.get(inputTags)));
+    return _.sortBy(_.flatten(_.map(sources, source => source.get(inputTags))), answer => -answer.text.length);
   },
 };
