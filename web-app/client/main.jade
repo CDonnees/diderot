@@ -13,7 +13,7 @@ template(name="Home")
 
   .container
     .tags-box.center 
-      h4 Choisissez un tag
+      h4 Choisis un mot-clé
       .tag Trump
       .tag.tag-active ParisAgainstTrump
       .tag FRAAUS
@@ -23,6 +23,9 @@ template(name="Home")
       .tag Pasdidee
       .tag Random
       .tag Brawket
+    .search-box.input-field
+      input#tag-search(placeholder="Ou entres-en un !" type="text" class="validate")
+      button(class="btn waves-effect waves-light" type="submit" name="action") Chercher
 
   .results-container.center
     h4.results-title Résultats Correspondants

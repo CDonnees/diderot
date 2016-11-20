@@ -3,7 +3,8 @@
 // $primary-color: color("blue", "lighten-2");
 
 
-$color1:#4A90E2;
+$color1:#008080;
+$color2:#ff936d;
 
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
@@ -11,7 +12,7 @@ $color1:#4A90E2;
 
 body {
   color: #333;
-  background-color:aliceblue;
+  background-color:#dff7f7;
   padding-bottom: 3rem;
 }
 
@@ -26,8 +27,18 @@ nav {
   }
 }
 
+h4 {
+  color: $color2;
+}
+
 .tags-box {
   margin-top:3rem;
+}
+
+.search-box {
+  margin:0 auto;
+  margin-top:2rem;
+  max-width: 500px;
 }
 
 .tag {
@@ -66,26 +77,50 @@ nav {
   background-color:$color1;
 }
 
+#tag-search {
+  max-width: 300px;
+}
+
 .results-container {
   width: 100%;
   margin-top: 5rem;
 }
 
 .result-card {
+  position:relative;
   width: 400px;
   display: inline-block;
   vertical-align: middle;
   margin: 0.2rem;
   background-color:black;
   transition:0.2s;
+  overflow: hidden;
   img {
     width: 100%;
     display: block;
     max-height: 300px;
     object-fit: contain;
   }
+  &:after {
+    content: 'Partager sur Twitter';
+    position:absolute;
+    height: 3rem;
+    top:0;
+    left:0;
+    right:0;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: translateY(-3rem);
+    transition: 0.2s;
+    color: white;
+    padding:0.5rem;
+  }
   &:hover {
     box-shadow:0 2px 8px 5px rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  }
+  &:hover:after {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
