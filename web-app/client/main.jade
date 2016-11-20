@@ -26,16 +26,18 @@ template(name="Home")
       a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
         if answer.text
           //- Plain text
-          .result-text "#{answer.text}"
-          .result-image-title #{answer.title}
+          .result-card.z-depth-1
+            .result-text "#{answer.text}"
+            .result-image-title #{answer.title}
         else if answer.finalImage
           .result-card.z-depth-1
             //- Image only
             img(src=answer.finalImage)
         else
-          //- Image + title
-          img(src=answer.imageUrl)
-          .result-image-title #{answer.imageUrl}
+          .result-card.z-depth-1
+            //- Image + title
+            img(src=answer.imageUrl)
+            .result-image-title #{answer.imageUrl}
 
     //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
     //-   .result-card.z-depth-1
