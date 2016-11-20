@@ -125,7 +125,7 @@ Searches.helpers({
     });
   },
   goodAnswer() {
-    return Answers.find({
+    return Answers.findOne({
       _id: this.selectedAnswerId,
     });
   },

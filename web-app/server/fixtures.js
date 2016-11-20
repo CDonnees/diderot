@@ -3,7 +3,7 @@
 Meteor.startup(() => {
   if (Searches.find().count() === 0) {
     _.each(InitialData, ({ search, answer }) => {
-      if (search && search.originalInput 
+      if (search && search.originalInput
         && answer && !_.isEmpty(answer.title)) {
         console.log(answer);
         const answerId = Answers.insert(answer);
