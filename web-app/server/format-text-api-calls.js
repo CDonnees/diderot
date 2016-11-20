@@ -2,14 +2,17 @@ import { HTTP } from 'meteor/http';
 import _ from 'underscore';
 
 FormatText = {
-  getImageUrl({ text }) {
-    const url = 'http://www.imageCreationHTMLYolo';
+  getImageUrl({ text, ref }) {
+    const url = 'http://api.page2images.com/html2image';
     const imageUrlRequest = HTTP.post(url, {
       data: {
-        text,
+        // p2i_html: `<div style="width: 400px;"><div style="font-family: 'Abril Fatface';padding: 0.5rem;background-color: white;letter-spacing: 0.4rem;text-transform: uppercase;font-size: 0.8rem;color:#333;">#Que Dirait Diderot</div><div style="font-family: 'Abril Fatface';padding: 1.5rem;color:#333;background-color: #84f7fd;">"${text}"</div><div style="font-family: 'Abril Fatface';padding: 0rem 3rem 1rem;background-color: #84f7fd;text-transform: uppercase;font-size:0.8rem;color:#333;">${ref}</div></div>`,
+        p2i_html:encodeURIComponent('<div>Yolo</div>'),
+        p2i_key: 'ea8fe257f32c4b77',
       },
     });
     return imageUrlRequest;
   },
 };
 
+// FormatText.getImageUrl({ text:'Vois-tu, mon jeune Trump, tu \'es qu\'une nouvelle recrue. Ceci dit pour ton édification, ami Trump, laisse-moi ajouter que je ne plaisantais nullement en exprimant la pensée que nous ne reverrions peut-être plus le Sborg, notre illustre chef.', ref:'Les ravageurs de la mer - 1980 - Louis Jacolliot' });
