@@ -15,7 +15,7 @@ template(name="Home")
     .tags-box.center 
       h5 Choisis un mot-clé
       each tag in allTags
-        .tag #{tag}
+        .tag(class="{{#if (isSelectedTag tag)}}tag-active{{/if}}") #{tag}
     .search-box.input-field
       input#tag-search(placeholder="Ou entres-en un !" type="text" class="validate")
       button(class="btn waves-effect waves-light" type="submit" name="action") Chercher
