@@ -12,4 +12,10 @@ Meteor.methods({
     Searches.validateAnswer({ searchId, answerId });
     Searches.validateForModeration({ searchId });
   },
+  getGoodTwitterImage({ answerId, height }) {
+    if (!this.isSimulation) {
+      this.unblock();
+      Answers.getGoodTwitterImage({ answerId, height });
+    }
+  },
 });

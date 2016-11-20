@@ -129,6 +129,18 @@ Searches.validateForModeration = ({ searchId }) => {
   }
 };
 
+Answers.getGoodTwitterImage = ({
+  answerId,
+  height,
+}) => {
+  const answer = Answers.findOne(answerId);
+  const imageReq = FormatText.getImageUrl({ text: answer.text, title: answer.title });
+  if (imageReq.content) {
+    console.log(imageReq.content);
+    console.log(EJSON.parse(imageReq.content));
+  }
+};
+
 Searches.helpers({
   answers() {
     return Answers.find({

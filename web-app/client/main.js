@@ -26,6 +26,27 @@ TemplateController('Home', {
     newSearch() {
       return Searches.findOne(this.state.newSearchId);
     },
+    getGoodTwitterImage(answerId) {
+      console.log(answerId);
+      const selector = `[data-index="${answerId}"`;
+      console.log(selector);
+      const heightPx = this.$(selector).closest('result-card').css('height');
+      const goodHeight = 2 * parseInt(heightPx.substr(0, heightPx.length - 2));
+
+      function callItAgainSam() {
+        Meteor.call('getGoodTwitterImage', { answerId, height: goodHeight }, (err, res) => {
+          if (err) {
+            console.log(err);
+          } else {
+            if (res.status === "processing") {
+              Meteor.setTimeout(callItAgainSam, 3000);
+            }
+          }
+        });
+      }
+
+      callItAgainSam();
+    },
   },
   events: {
     'click .tag'(e) {
