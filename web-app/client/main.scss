@@ -7,6 +7,7 @@ $color1:#4A90E2;
 
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 
 body {
   color: #333;
@@ -104,3 +105,35 @@ nav {
   color:#333;
   text-align:left;
 }
+
+.result-card-template {
+  width: 400px;
+}
+
+.result-img-header {
+  font-family: "Abril Fatface";
+  padding: 0.5rem;
+  background-color: white;
+  letter-spacing: 0.4rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color:#333;
+}
+
+.result-img-text {
+  font-family: "Abril Fatface";
+  padding: 1.5rem;
+  color:#333;
+  background-color: #84f7fd;
+}
+
+.result-img-ref {
+  font-family: "Abril Fatface";
+  padding: 0rem 3rem 1rem;
+  background-color: #84f7fd;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color:#333;
+}
+
+
