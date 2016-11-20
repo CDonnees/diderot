@@ -94,6 +94,18 @@ template(name="Home")
                   img(src=answer.imageUrl)
                   .result-image-title #{answer.title}
 
+            .result-card.z-depth-1
+              //- Text Img
+              .result-buttons
+                a(href=answer.finalMessage target="_blank")
+                  .share-twitter Partager sur Twitter
+                a(href=answer.resourceUrl target="_blank")
+                  .open-gallica Ouvrir sur Gallica
+              .result-img-header # Que Dirait Diderot ?
+              .result-img-text "Vois-tu, mon jeune Trump, tu n'es qu'une nouvelle recrue. Ceci dit pour ton édification, ami Trump, laisse-moi ajouter que je ne plaisantais nullement en exprimant la pensée que nous ne reverrions peut-être plus le Sborg, notre illustre chef."
+              .result-img-ref Les ravageurs de la mer - 1980 - Louis Jacolliot
+
+
     //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
     //-   .result-card.z-depth-1
     //-     //- Image only
@@ -110,8 +122,4 @@ template(name="Home")
     //-     .result-image-title Les ravageurs de la mer - 1980 - Louis Jacolliot
 
   //-Template for HTML to img    
-  //- <div style="width: 400px;">
-  //-   <div style="font-family: 'Abril Fatface';padding: 0.5rem;background-color: white;letter-spacing: 0.4rem;text-transform: uppercase;font-size: 0.8rem;color:#333;"># Que Dirait Diderot ?</div>
-  //-   <div style="font-family: 'Abril Fatface';padding: 1.5rem;color:#333;background-color: #84f7fd;">"Vois-tu, mon jeune Trump, tu n'es qu'une nouvelle recrue. Ceci dit pour ton édification, ami Trump, laisse-moi ajouter que je ne plaisantais nullement en exprimant la pensée que nous ne reverrions peut-être plus le Sborg, notre illustre chef."</div>
-  //-   <div style="font-family: 'Abril Fatface';padding: 0rem 3rem 1rem;background-color: #84f7fd;text-transform: uppercase;font-size:0.8rem;color:#333;">Les ravageurs de la mer - 1980 - Louis Jacolliot</div>
-  //- </div>
+  //- <div style="width:800px;text-align:center;font-size:2rem;"><div style="font-family: 'Abril Fatface';padding: 0.5rem;background-color: white;letter-spacing: 0.4rem;text-transform: uppercase;font-size: 1.6rem;color:#333;"># Que Dirait Diderot ?</div><div style="font-family: 'Abril Fatface';padding: 3rem;color:#333;background-color: #84f7fd;">"${text}"</div><div style="font-family: 'Abril Fatface';padding: 0rem 6rem 2rem;background-color: #84f7fd;text-transform: uppercase;font-size:1.6rem;color:#333;">${ref}</div></div>
