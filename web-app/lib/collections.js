@@ -160,7 +160,7 @@ Answers.getGoodTwitterImage = ({
       Answers.update({ _id: answerId },
         {
           $set: {
-            finalMessage: `http://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=${encodeURIComponent(search.originalTags.map(tag => `#${tag}`).join(' et '))}&url=${encodeURIComponent(answer.shortenedResourceUrl)}&via=Diderobot`,
+            finalMessage: `http://twitter.com/intent/tweet?hashtags=QueDiraitDiderot&text=${encodeURIComponent(search.originalTags.map(tag => `#${tag}`).join(' et '))}&url=${encodeURIComponent(answer.shortenedResourceUrl)}&via=Diderobot`,
             finalImage: res.image_url,
           },
         });

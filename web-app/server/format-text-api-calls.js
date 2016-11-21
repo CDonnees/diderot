@@ -118,12 +118,12 @@ FormatText = {
       });
     });
     console.log('return');
-    return `${Meteor.settings.public.s3bucket}${answerId}`;
+    return `${Meteor.settings.public.s3bucket}${answerId}.png`;
   },
   _onlySendbase64ToS3({ answerId, base64 }) {
     const buf = new Buffer(base64.replace('data:image/png;base64,', ''), 'base64');
     const objData = {
-      Key: answerId,
+      Key: answerId + '.png',
       Body: buf,
       ContentEncoding: 'base64',
       ContentType: 'image/png',
@@ -136,7 +136,7 @@ FormatText = {
         console.log('succesfully uploaded the image!', data);
       }
     });
-    return `${Meteor.settings.public.s3bucket}${answerId}`;
+    return `${Meteor.settings.public.s3bucket}${answerId}.png`;
   },
 };
 
