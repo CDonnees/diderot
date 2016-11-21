@@ -11,7 +11,7 @@ TemplateController('Home', {
   },
   helpers: {
     allTags() {
-      return _.uniq(_.flatten(Searches.find({
+      const allTags = _.uniq(_.flatten(Searches.find({
         wasModerated: true, selectedAnswerId: { $ne: null },
       }, {
         sort: {
@@ -19,9 +19,16 @@ TemplateController('Home', {
         },
         limit: 20,
       }).map(search => search.originalTags)));
+      // if (_.isEmpty(FlowRouter.getQueryParam('selectedValues'))) {
+      //   FlowRouter.setQueryParams({
+      //     'selectedValues': [_.last(allTags)],
+      //   });
+      // }
+      return allTags;
     },
     selectedAnswers() {
       return Searches.find({
+        wasModerated: true, selectedAnswerId: { $ne: null },
         originalTags: {
           $in: FlowRouter.getQueryParam('selectedValues') || [],
         },
