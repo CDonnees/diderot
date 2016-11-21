@@ -1,4 +1,5 @@
 template(name="Home")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/rasterizehtml/1.2.4/rasterizeHTML.allinone.js" type="text/javascript")
   .navbar-fixed
     nav
       .nav-wrapper
@@ -64,6 +65,7 @@ template(name="Home")
                     img(src=answer.imageUrl)
                     .result-image-title #{answer.title}
 
+
           
           if $eq selectedAnswers.length 0
             if $not state.newSearchId
@@ -72,7 +74,7 @@ template(name="Home")
             h5.results-title Résultats Correspondants
             each answer in selectedAnswers
               if answer.text
-                .result-card.z-depth-1(data-index=answer._id)
+                .result-card.z-depth-1(id=answer._id data-index=answer._id)
                   //- Text Img for plain text
                   .result-buttons
                     if $not answer.finalImage
@@ -108,7 +110,7 @@ template(name="Home")
                       .open-gallica Ouvrir sur Gallica
                   img(src=answer.imageUrl)
                   .result-image-title #{answer.title}
-
+  canvas(id="canvas" width="800" height="600" style="opacity: 0; z-index: -99999; position:fixed;")
             
 
 

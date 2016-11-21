@@ -56,7 +56,6 @@ const sources = [
     },
     getTagOccurences(arkId, tag) {
       const url = `http://gallica.bnf.fr/services/ContentSearch?ark=${arkId}&query=${encodeURIComponent(tag)}`;
-      console.log(url);
       const xml = parseXML({ url });
       if (xml) {
         return parseInt(xml.results.$.countResults);
@@ -65,7 +64,7 @@ const sources = [
     },
     getQuotesFromTag(arkId, tag) {
       const url = `http://gallica.bnf.fr/services/ContentSearch?ark=${arkId}&query=${encodeURIComponent(tag)}`;
-      console.log(url);
+
       const xml = parseXML({ url });
       if (xml) {
         // console.log(xml.results.items[0]);

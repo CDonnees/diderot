@@ -10,6 +10,16 @@ $color2:#ff936d;
 @import "{poetic:materialize-scss}/sass/materialize.scss";
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 
+@font-face {
+  font-family: 'Abril Fatface';
+/*  src: url('fonts/Panton/Panton-Thin.eot');
+  src: url('fonts/Panton/Panton-Thin.woff') format('woff'), url('fonts/Panton/Panton-Thin.ttf') format('truetype'), url('fonts/Panton/Panton-Thin.otf') format('opentype'), url('fonts/Panton/Panton-Thin.svg') format('svg');*/
+  src: url('abril-fatface/AbrilFatface-Regular.otf') format('opentype');
+  // font-weight: 100;
+  font-style: normal;
+}
+
+
 body {
   color: #333;
   background-color:#dff7f7;
@@ -166,7 +176,7 @@ h5 {
 }
 
 .result-img-header {
-  font-family: "serif";
+  font-family: "Abril Fatface";
   padding: 0.5rem;
   background-color: white;
   letter-spacing: 0.4rem;
@@ -176,14 +186,14 @@ h5 {
 }
 
 .result-img-text {
-  font-family: "serif";
+  font-family: "Abril Fatface";
   padding: 1.5rem;
   color:#333;
   background-color: #84f7fd;
 }
 
 .result-img-ref {
-  font-family: "serif";
+  font-family: "Abril Fatface";
   padding: 0rem 3rem 1rem;
   background-color: #84f7fd;
   text-transform: uppercase;

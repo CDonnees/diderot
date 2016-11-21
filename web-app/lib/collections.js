@@ -138,23 +138,33 @@ Searches.validateForModeration = ({ searchId }) => {
 Answers.getGoodTwitterImage = ({
   answerId,
   height,
+  base64
 }) => {
   const answer = Answers.findOne(answerId);
-  const imageReq = FormatText.getImageUrl({ text: answer.text, title: answer.title, height, });
-  const res = EJSON.parse(imageReq.content);
+  const res = FormatText.getImageUrl({
+    answerId, text: answer.text,
+    title: answer.title,
+    height,
+    base64,
+  });
+
   if (res.status === 'processing') {
     return { status: 'processing' };
   } else if (res.status === 'finished') {
     const search = Searches.findOne({
       selectedAnswerId: answerId,
     });
-    Answers.update({ _id: answerId },
-      {
-        $set: {
-          finalMessage: `http://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=${encodeURIComponent(search.originalTags.map(tag => `#${tag}`).join(' et '))}&url=${encodeURIComponent(answer.shortenedResourceUrl)}&via=Diderobot`,
-          finalImage: res.image_url,
-        },
-      });
+    
+    // Timeout so phantomJS can do his thing
+    Meteor.setTimeout(() => {
+      Answers.update({ _id: answerId },
+        {
+          $set: {
+            finalMessage: `http://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=${encodeURIComponent(search.originalTags.map(tag => `#${tag}`).join(' et '))}&url=${encodeURIComponent(answer.shortenedResourceUrl)}&via=Diderobot`,
+            finalImage: res.image_url,
+          },
+        });
+    }, 1000);
     return { status: 'finished' };
   }
 };
