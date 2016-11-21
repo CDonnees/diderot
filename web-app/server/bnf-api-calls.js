@@ -110,7 +110,7 @@ const sources = [
 
       const documents = _.compact(_.flatten(_.map(contentListXML['srw:searchRetrieveResponse']['srw:records'][0]['srw:record'], (record) => {
         const recordUrl = record['srw:recordData'][0]['oai_dc:dc'][0]['dc:identifier'][0];
-        const recordTitle = record['srw:recordData'][0]['oai_dc:dc'][0]['dc:title'][0].substr(0, 100).replace('é', 'e').replace('ê', 'e').replace('î', 'i').replace('è', 'e')+'...';
+        const recordTitle = record['srw:recordData'][0]['oai_dc:dc'][0]['dc:title'][0].substr(0, 100)+'...';
         const imageUrl = record['srw:extraRecordData'][0]['thumbnail'][0];
 
         const splitUrl = recordUrl.split('/');
@@ -133,7 +133,7 @@ const sources = [
                 title: recordTitle,
                 imageUrl,
                 arkId,
-                text: striptags(quote.replace('é', 'e').replace('è', 'e').replace('ê', 'e').replace('î', 'i')),
+                text: striptags(quote),
               };
             });
           }
