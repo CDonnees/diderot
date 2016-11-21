@@ -142,6 +142,21 @@ h5 {
       transform: translateY(0);
     }
   }
+  // &:nth-child(5n) {
+  //   background-color: #84f7fd;
+  // }
+  // &:nth-child(5n + 1) {
+  //   background-color: red;
+  // }
+  // &:nth-child(5n + 2) {
+  //   background-color: blue;
+  // }
+  // &:nth-child(5n + 3) {
+  //   background-color: yellow;
+  // }
+  // &:nth-child(5n + 4) {
+  //   background-color: green;
+  // }
 }
 
 .result-image-title {
@@ -166,7 +181,7 @@ h5 {
 }
 
 .result-img-header {
-  font-family: "serif";
+  font-family: "Abril Fatface";
   padding: 0.5rem;
   background-color: white;
   letter-spacing: 0.4rem;
@@ -176,14 +191,14 @@ h5 {
 }
 
 .result-img-text {
-  font-family: "serif";
+  font-family: "Abril Fatface";
   padding: 1.5rem;
   color:#333;
   background-color: #84f7fd;
 }
 
 .result-img-ref {
-  font-family: "serif";
+  font-family: "Abril Fatface";
   padding: 0rem 3rem 1rem;
   background-color: #84f7fd;
   text-transform: uppercase;
