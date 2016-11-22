@@ -140,21 +140,21 @@ h5 {
   }
   .result-buttons {
     position:absolute;
-    height: 7rem;
+    height: 2rem;
     top:0;
     left:0;
     right:0;
     background-color: rgba(0,0,0,0.7);
     opacity: 0;
-    transform: translateY(-7rem);
+    transform: translateY(-2rem);
     transition: 0.2s;
     color: white;
-    padding:0.5rem;
 
     .share-twitter, .open-gallica {
       color:white;
       font-weight: 500;
-      font-size: 1.2rem;
+      font-size: 1rem;
+      line-height: 2rem;
       padding:0.5rem;
       transition: 0.2s;
       &:hover {

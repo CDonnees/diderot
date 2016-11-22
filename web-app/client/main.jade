@@ -85,10 +85,10 @@ template(name="Home")
                           .share-twitter Création du partage twitter...
                       else
                         a(href=answer.finalMessage target="_blank")
-                          .share-twitter Partager sur Twitter
+                          span.share-twitter Twitter
                       
                       a(href=answer.resourceUrl target="_blank")
-                        .open-gallica Ouvrir sur Gallica
+                        span.open-gallica Gallica
                     .result-img-header # Que Dirait Diderot ?
                     .result-img-text "#{answer.text}"
                     .result-img-ref #{answer.title}
@@ -98,18 +98,18 @@ template(name="Home")
                     //- Image only
                     .result-buttons
                       a(href=answer.finalMessage target="_blank")
-                        .share-twitter Partager sur Twitter
+                        span.share-twitter Twitter
                       a(href=answer.resourceUrl target="_blank")
-                        .open-gallica Ouvrir sur Gallica
+                        span.open-gallica Gallica
                     img(src=answer.finalImage)
                 else
                   .result-card.z-depth-1
                     //- Image + title
                     .result-buttons
                       a(href=answer.finalMessage target="_blank")
-                        .share-twitter Partager sur Twitter
+                        span.share-twitter Twitter
                       a(href=answer.resourceUrl target="_blank")
-                        .open-gallica Ouvrir sur Gallica
+                        span.open-gallica Gallica
                     img(src=answer.imageUrl)
                     .result-image-title #{answer.title}
   canvas(id="canvas" width="800" height="600" style="opacity: 0; z-index: -99999; position:fixed;")
