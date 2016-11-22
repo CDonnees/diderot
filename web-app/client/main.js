@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import masonry from 'masonry-layout';
+
 toDataUrl = function(text, title, callback, outputFormat, height) {
   // const canvas = document.createElement('CANVAS');
   const canvas = document.getElementById('canvas');
@@ -17,9 +20,18 @@ toDataUrl = function(text, title, callback, outputFormat, height) {
   });
 };
 
+refreshMasonry = function(delay) {
+  Meteor.setTimeout(() => {
+    this.masonry = new masonry( document.querySelector('.results-grid'), {
+      // options...
+      itemSelector: '.result-card',
+      columnWidth: 400,
+    });
+  }, delay);
+};
 
 TemplateController('Home', {
-  onCreated(){
+  onCreated() {
     // this.autorun(() => {
     //   this.subscribe('lastSearchesAndTheirAnswers');
     //   this.subscribe('myCurrentSearchAndItsAnswers', this.state.newSearchId);
@@ -28,6 +40,12 @@ TemplateController('Home', {
   state: {
     newSearchId: null,
     searchLoading: false,
+  },
+  private: {
+    masonry:null,
+  },
+  onRendered() {
+    refreshMasonry({ delay: 1000 });
   },
   helpers: {
     allTags() {
@@ -61,6 +79,7 @@ TemplateController('Home', {
     isSelectedTag(tag) {
       const selectedValues = FlowRouter.getQueryParam('selectedValues') || [];
       const index = selectedValues.indexOf(tag);
+      refreshMasonry({ delay: 500 });
       return index !== -1;
     },
     newSearch() {

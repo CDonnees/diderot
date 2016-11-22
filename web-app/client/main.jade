@@ -45,25 +45,26 @@ template(name="Home")
             else
               h5.results-title Choississez un résultat parmi:
               p.js-cancel(style="text-decoration:underline;  color: gray;") Retour
-              each answer in newSearch.answers
-                if answer.text
-                  //- Text Img for plain text
-                  .result-card.z-depth-1(data-index=answer._id)
-                    .result-buttons
-                      a(data-index=answer._id href="").js-validate-answer
-                          .share-twitter Valider cette phrase
-                    .result-img-header # Que Dirait Diderot ?
-                    .result-img-text "#{answer.text}"
-                    .result-img-ref #{answer.title}
-                else if answer.finalImage
-                  .result-card.z-depth-1
-                    //- Image only
-                    img(src=answer.finalImage)
-                else
-                  .result-card.z-depth-1
-                    //- Image + title
-                    img(src=answer.imageUrl)
-                    .result-image-title #{answer.title}
+              .results-grid
+                each answer in newSearch.answers
+                  if answer.text
+                    //- Text Img for plain text
+                    .result-card.z-depth-1(data-index=answer._id)
+                      .result-buttons
+                        a(data-index=answer._id href="").js-validate-answer
+                            .share-twitter Valider cette phrase
+                      .result-img-header # Que Dirait Diderot ?
+                      .result-img-text "#{answer.text}"
+                      .result-img-ref #{answer.title}
+                  else if answer.finalImage
+                    .result-card.z-depth-1
+                      //- Image only
+                      img(src=answer.finalImage)
+                  else
+                    .result-card.z-depth-1
+                      //- Image + title
+                      img(src=answer.imageUrl)
+                      .result-image-title #{answer.title}
 
 
           
@@ -72,44 +73,45 @@ template(name="Home")
               h5.results-title Faites une recherche ou cliquez sur des tags !
           else
             h5.results-title Résultats Correspondants
-            each answer in selectedAnswers
-              if answer.text
-                .result-card.z-depth-1(id=answer._id data-index=answer._id)
-                  //- Text Img for plain text
-                  .result-buttons
-                    if $not answer.finalImage
-                      .loading(style="display: none;")|#{getGoodTwitterImage answer._id}
-                      a(href="")
-                        .share-twitter Création du partage twitter...
-                    else
+            .results-grid
+              each answer in selectedAnswers
+                if answer.text
+                  .result-card.z-depth-1(id=answer._id data-index=answer._id)
+                    //- Text Img for plain text
+                    .result-buttons
+                      if $not answer.finalImage
+                        .loading(style="display: none;")|#{getGoodTwitterImage answer._id}
+                        a(href="")
+                          .share-twitter Création du partage twitter...
+                      else
+                        a(href=answer.finalMessage target="_blank")
+                          .share-twitter Partager sur Twitter
+                      
+                      a(href=answer.resourceUrl target="_blank")
+                        .open-gallica Ouvrir sur Gallica
+                    .result-img-header # Que Dirait Diderot ?
+                    .result-img-text "#{answer.text}"
+                    .result-img-ref #{answer.title}
+
+                else if answer.finalImage
+                  .result-card.z-depth-1
+                    //- Image only
+                    .result-buttons
                       a(href=answer.finalMessage target="_blank")
                         .share-twitter Partager sur Twitter
-                    
-                    a(href=answer.resourceUrl target="_blank")
-                      .open-gallica Ouvrir sur Gallica
-                  .result-img-header # Que Dirait Diderot ?
-                  .result-img-text "#{answer.text}"
-                  .result-img-ref #{answer.title}
-
-              else if answer.finalImage
-                .result-card.z-depth-1
-                  //- Image only
-                  .result-buttons
-                    a(href=answer.finalMessage target="_blank")
-                      .share-twitter Partager sur Twitter
-                    a(href=answer.resourceUrl target="_blank")
-                      .open-gallica Ouvrir sur Gallica
-                  img(src=answer.finalImage)
-              else
-                .result-card.z-depth-1
-                  //- Image + title
-                  .result-buttons
-                    a(href=answer.finalMessage target="_blank")
-                      .share-twitter Partager sur Twitter
-                    a(href=answer.resourceUrl target="_blank")
-                      .open-gallica Ouvrir sur Gallica
-                  img(src=answer.imageUrl)
-                  .result-image-title #{answer.title}
+                      a(href=answer.resourceUrl target="_blank")
+                        .open-gallica Ouvrir sur Gallica
+                    img(src=answer.finalImage)
+                else
+                  .result-card.z-depth-1
+                    //- Image + title
+                    .result-buttons
+                      a(href=answer.finalMessage target="_blank")
+                        .share-twitter Partager sur Twitter
+                      a(href=answer.resourceUrl target="_blank")
+                        .open-gallica Ouvrir sur Gallica
+                    img(src=answer.imageUrl)
+                    .result-image-title #{answer.title}
   canvas(id="canvas" width="800" height="600" style="opacity: 0; z-index: -99999; position:fixed;")
             
 

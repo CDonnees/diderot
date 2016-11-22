@@ -107,9 +107,9 @@ h5 {
 
 .result-card {
   position:relative;
-  width: 400px;
-  display: inline-block;
-  vertical-align: middle;
+  width: calc(400px - 0.4rem);
+  // display: inline-block;
+  // vertical-align: middle;
   margin: 0.2rem;
   background-color:black;
   transition:0.2s;
