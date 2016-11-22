@@ -85,10 +85,14 @@ template(name="Home")
                           .share-twitter Création du partage twitter...
                       else
                         a(href=answer.finalMessage target="_blank")
-                          span.share-twitter Twitter
+                          span.share-twitter
+                            i.material-icons share
+                            |Twitter
                       
                       a(href=answer.resourceUrl target="_blank")
-                        span.open-gallica Gallica
+                        span.open-gallica
+                          i.material-icons loupe
+                          |Gallica
                     .result-img-header # Que Dirait Diderot ?
                     .result-img-text "#{answer.text}"
                     .result-img-ref #{answer.title}
@@ -98,18 +102,26 @@ template(name="Home")
                     //- Image only
                     .result-buttons
                       a(href=answer.finalMessage target="_blank")
-                        span.share-twitter Twitter
+                        span.share-twitter
+                          i.material-icons share
+                          |Twitter
                       a(href=answer.resourceUrl target="_blank")
-                        span.open-gallica Gallica
+                        span.open-gallica
+                          i.material-icons loupe
+                          |Gallica
                     img(src=answer.finalImage)
                 else
                   .result-card.z-depth-1
                     //- Image + title
                     .result-buttons
                       a(href=answer.finalMessage target="_blank")
-                        span.share-twitter Twitter
+                        span.share-twitter
+                          i.material-icons share
+                          |Twitter
                       a(href=answer.resourceUrl target="_blank")
-                        span.open-gallica Gallica
+                        span.open-gallica
+                          i.material-icons loupe
+                          |Gallica
                     img(src=answer.imageUrl)
                     .result-image-title #{answer.title}
   canvas(id="canvas" width="800" height="600" style="opacity: 0; z-index: -99999; position:fixed;")

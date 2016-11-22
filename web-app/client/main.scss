@@ -35,10 +35,15 @@ nav {
   span {
     vertical-align: top;
   }
+  .brand-logo {
+    font-weight: 200;
+    font-size:1.8rem;
+  }
 }
 
 h5 {
   color: $color2;
+  font-weight: 300;
 }
 
 .fixed-selection-col {
@@ -76,6 +81,7 @@ h5 {
   margin:0 auto;
   margin-top:2rem;
   max-width: 500px;
+  text-align: center;
 }
 
 .tag {
@@ -159,6 +165,11 @@ h5 {
       transition: 0.2s;
       &:hover {
         color:$color2;
+      }
+      i {
+        line-height: 2rem;
+        font-size: 1.4rem;
+        vertical-align: top;
       }
     }
   }
