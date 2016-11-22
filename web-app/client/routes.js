@@ -9,3 +9,10 @@ FlowRouter.route('/', {
   },
 });
 
+FlowRouter.route('/answer/:id', {
+  name: 'AnswerPage',
+  action() {
+    BlazeLayout.render('Layout', { main: 'AnswerPage' });
+  },
+});
+

@@ -136,6 +136,7 @@ h5 {
   margin: 0.2rem;
   transition:0.2s;
   overflow: hidden;
+  text-align:center;
   img {
     width: 100%;
     display: block;
@@ -195,6 +196,10 @@ h5 {
   // &:nth-child(5n + 4) {
   //   background-color: #a0ffa0;
   // }
+}
+
+#answer-page .result-card {
+  margin:0 auto;
 }
 
 .result-image-title {

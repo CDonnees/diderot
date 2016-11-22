@@ -46,7 +46,7 @@ TemplateController('Home', {
     searchLoading: false,
   },
   private: {
-    masonry:null,
+    masonry: null,
   },
   onRendered() {
     refreshMasonry({ grid: '#tags-answers-grid', delay: 1000 });

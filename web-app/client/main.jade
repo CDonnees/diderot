@@ -95,7 +95,7 @@ template(name="Home")
                           |Gallica
                     .result-img-header # Que Dirait Diderot ?
                     .result-img-text "#{answer.text}"
-                    .result-img-ref #{answer.title}
+                    .result-img-ref #{answer.title} #{answer._id}
 
                 else if answer.finalImage
                   .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};")
@@ -125,23 +125,24 @@ template(name="Home")
                     img(src=answer.imageUrl)
                     .result-image-title #{answer.title}
   canvas(id="canvas" width="800" height="600" style="opacity: 0; z-index: -99999; position:fixed;")
-            
 
 
-    //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
-    //-   .result-card.z-depth-1
-    //-     //- Image only
-    //-     img(src="https://pbs.twimg.com/media/CxpdUgSXAAASkEZ.jpg")
-    //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
-    //-   .result-card.z-depth-1
-    //-     //- Image + title
-    //-     img(src="http://gallica.bnf.fr/ark:/12148/bpt6k934227m/f3.highres")
-    //-     .result-image-title  La Revue illustrée du Chat noir : paraissant le samedi
-    //- a(href="https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot")
-    //-   .result-card.z-depth-1
-    //-     //- Plain text
-    //-     .result-text "Vois-tu, mon jeune Trump, tu n'es qu'une nouvelle recrue. Ceci dit pour ton édification, ami Trump, laisse-moi ajouter que je ne plaisantais nullement en exprimant la pensée que nous ne reverrions peut-être plus le Sborg, notre illustre chef."
-    //-     .result-image-title Les ravageurs de la mer - 1980 - Louis Jacolliot
 
-  //-Template for HTML to img    
-  //- <div style="width:800px;text-align:center;font-size:2rem;"><div style="font-family: 'Abril Fatface';padding: 0.5rem;background-color: white;letter-spacing: 0.4rem;text-transform: uppercase;font-size: 1.6rem;color:#333;"># Que Dirait Diderot ?</div><div style="font-family: 'Abril Fatface';padding: 3rem;color:#333;background-color: #84f7fd;">"${text}"</div><div style="font-family: 'Abril Fatface';padding: 0rem 6rem 2rem;background-color: #84f7fd;text-transform: uppercase;font-size:1.6rem;color:#333;">${ref}</div></div>
+template(name="AnswerPage")
+  #answer-page
+    .navbar-fixed
+      nav
+        .nav-wrapper
+          a(href="#" class="brand-logo")
+            img.nav-logo(src="/QDDiderot-logo.png")
+            span Que Dirait Diderot ?
+    h2.center Yolo answer page
+    .container.center
+      .result-card.z-depth-1
+        .result-buttons
+          a(data-index=answer._id href="").js-validate-answer
+              .share-twitter Valider cette phrase
+        .result-img-header # Que Dirait Diderot ?
+        .result-img-text "Si l'on ajoute aux Michel, les Michèle, Mickaël, Jean-Michel, sans oublier les Gabriel et Raphaël, il y a bien un million et demi de Français à qui l'on peut, en ce jour, dire bonne fête"
+        .result-img-ref MOEURS ET HUMEURS DES FRANÇAIS AU FIL DES SAISONS / PHILIPPE BESNARD
+
