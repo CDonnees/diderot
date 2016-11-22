@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import masonry from 'masonry-layout';
 
-toDataUrl = function(text, title, callback, outputFormat, height) {
+toDataUrl = function(text, title, callback, outputFormat, height, color) {
   // const canvas = document.createElement('CANVAS');
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
@@ -11,7 +11,7 @@ toDataUrl = function(text, title, callback, outputFormat, height) {
   // canvas.width = this.width;
   // const htmlContainer = document.getElementById(elementId);
   // const html = htmlContainer.innerHTML;
-  const html = `<link rel='stylesheet' type='text-css' href='https://fonts.googleapis.com/css?family=Abril+Fatface'><style>@font-face {font-family: 'Abril Fatface'; src: url('abril-fatface/AbrilFatface-Regular.otf') format('opentype'); font-style: normal;}</style><div style="width:800px;text-align:center;font-size:2rem; font-family: 'Abril Fatface', cursive;"><div style="font-family: 'Abril Fatface';padding: 0.5rem;background-color: white;letter-spacing: 0.4rem;text-transform: uppercase;font-size: 1.6rem;color:#333;"># Que Dirait Diderot ?</div><div style="font-family: 'Abril Fatface';padding: 3rem;color:#333;background-color: #84f7fd;">"${text}"</div><div style="font-family: 'Abril Fatface';padding: 0rem 6rem 2rem;background-color: #84f7fd;text-transform: uppercase;font-size:1.6rem;color:#333;">${title}</div></div>`;
+  const html = `<link rel='stylesheet' type='text-css' href='https://fonts.googleapis.com/css?family=Abril+Fatface'><style>@font-face {font-family: 'Abril Fatface'; src: url('abril-fatface/AbrilFatface-Regular.otf') format('opentype'); font-style: normal;}</style><div style="width:800px;text-align:center;font-size:2rem; font-family: 'Abril Fatface', cursive; background-color:${color};"><div style="font-family: 'Abril Fatface';padding: 0.5rem;background-color: white;letter-spacing: 0.4rem;text-transform: uppercase;font-size: 1.6rem;color:#333;"># Que Dirait Diderot ?</div><div style="font-family: 'Abril Fatface';padding: 3rem;color:#333;">"${text}"</div><div style="font-family: 'Abril Fatface';padding: 0rem 6rem 2rem;text-transform: uppercase;font-size:1.6rem;color:#333;">${title}</div></div>`;
   rasterizeHTML.drawHTML(html, {
     executeJs: true,
   }).then(function (renderResult) {
@@ -113,7 +113,7 @@ TemplateController('Home', {
 
         toDataUrl(answer.text, answer.title, (base64Img) => {
           callItAgainSam(base64Img);
-        }, 'image/png', goodHeight);
+        }, 'image/png', goodHeight, answer.color);
       });
     },
   },
