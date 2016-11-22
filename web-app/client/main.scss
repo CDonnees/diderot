@@ -146,13 +146,13 @@ h5 {
   }
   .result-buttons {
     position:absolute;
-    height: 2rem;
+    height: 2.2rem;
     top:0;
     left:0;
     right:0;
     background-color: rgba(0,0,0,0.7);
     opacity: 0;
-    transform: translateY(-2rem);
+    transform: translateY(-2.2rem);
     transition: 0.2s;
     color: white;
 
@@ -160,14 +160,14 @@ h5 {
       color:white;
       font-weight: 500;
       font-size: 1rem;
-      line-height: 2rem;
+      line-height: 2.2rem;
       padding:0.5rem;
       transition: 0.2s;
       &:hover {
         color:$color2;
       }
       i {
-        line-height: 2rem;
+        line-height: 2.2rem;
         font-size: 1.4rem;
         vertical-align: top;
       }
