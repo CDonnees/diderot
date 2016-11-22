@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import google from 'google-url';
+import _ from 'underscore';
 
 Searches = new Mongo.Collection('searches');
 
@@ -28,6 +29,7 @@ Searches.schema = new SimpleSchema({
 
 Searches.attachSchema(Searches.schema);
 
+const colorPalette = ['#a2f5f9', '#ffd5d5', '#d2d2ff', '#ffff94', '#a0ffa0'];
 
 Answers = new Mongo.Collection('answers');
 
@@ -43,6 +45,11 @@ Answers.schema = new SimpleSchema({
   // Tweeted Message: should respect this format:
   // https://twitter.com/intent/tweet?hashtags=QueDiraitDiderot,Trump&text=yolo+swag&url=http%3A%2F%2Fbit.ly%2F24qiD3N&via=Diderobot"
   finalImage: { type: String, optional: true }, //Tweeted Image
+  color: {
+    type: String,
+    autoValue() { if (this.isInsert) return _.sample(colorPalette); },
+    optional: true,
+  },
 });
 
 Answers.attachSchema(Answers.schema);
