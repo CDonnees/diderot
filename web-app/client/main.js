@@ -20,9 +20,9 @@ toDataUrl = function(text, title, callback, outputFormat, height) {
   });
 };
 
-refreshMasonry = function(delay) {
+refreshMasonry = function({ grid, delay }) {
   Meteor.setTimeout(() => {
-    this.masonry = new masonry( document.querySelector('.results-grid'), {
+    new masonry( document.querySelector(grid), {
       // options...
       itemSelector: '.result-card',
       columnWidth: 400,
@@ -45,7 +45,7 @@ TemplateController('Home', {
     masonry:null,
   },
   onRendered() {
-    refreshMasonry({ delay: 1000 });
+    refreshMasonry({ grid: '#tags-answers-grid', delay: 1000 });
   },
   helpers: {
     allTags() {
@@ -79,7 +79,7 @@ TemplateController('Home', {
     isSelectedTag(tag) {
       const selectedValues = FlowRouter.getQueryParam('selectedValues') || [];
       const index = selectedValues.indexOf(tag);
-      refreshMasonry({ delay: 500 });
+      refreshMasonry({ grid: '#tags-answers-grid', delay: 500 });
       return index !== -1;
     },
     newSearch() {
@@ -135,7 +135,7 @@ TemplateController('Home', {
 
       Meteor.call('sendNewSearchAndFetch', { input: val }, (err, res) => {
         this.state.searchLoading = false;
-        refreshMasonry({ delay: 500 });
+        refreshMasonry({ grid: '#search-answers-grid', delay: 500 });
         if (err) {
           console.log(err);
         } else {

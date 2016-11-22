@@ -50,6 +50,24 @@ h5 {
   min-height: calc(100vh - 50px);
 }
 
+@media only screen and (max-width: 601px) {
+  .fixed-selection-col {
+    position:initial;
+    background-color: #f1ffff;
+    width: 100%;
+    text-align: center;
+    min-height:0;
+    .tags-box, .search-box {
+      margin-top: 0;
+    }
+  }
+
+  .result-card {
+    max-width: 100%;
+  }
+
+}
+
 .tags-box {
   margin-top:1.5rem;
 }
@@ -151,20 +169,21 @@ h5 {
       transform: translateY(0);
     }
   }
+  background-color: #a2f5f9;
   // &:nth-child(5n) {
-  //   background-color: #84f7fd;
+  //   background-color: #a2f5f9;
   // }
   // &:nth-child(5n + 1) {
-  //   background-color: red;
+  //   background-color: #ffd5d5;
   // }
   // &:nth-child(5n + 2) {
-  //   background-color: blue;
+  //   background-color: #d2d2ff;
   // }
   // &:nth-child(5n + 3) {
-  //   background-color: yellow;
+  //   background-color: #ffff94;
   // }
   // &:nth-child(5n + 4) {
-  //   background-color: green;
+  //   background-color: #a0ffa0;
   // }
 }
 
@@ -203,13 +222,13 @@ h5 {
   font-family: "Abril Fatface";
   padding: 1.5rem;
   color:#333;
-  background-color: #84f7fd;
+  // background-color: #84f7fd;
 }
 
 .result-img-ref {
   font-family: "Abril Fatface";
   padding: 0rem 3rem 1rem;
-  background-color: #84f7fd;
+  // background-color: #84f7fd;
   text-transform: uppercase;
   font-size: 0.8rem;
   color:#333;

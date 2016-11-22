@@ -36,7 +36,7 @@ template(name="Home")
 
   .page-container
     .row
-      .col.s9.offset-s3
+      .col.s12.m9.offset-m3
         .results-container.center
           if state.newSearchId
             if $eq newSearch.answers.count 0
@@ -45,7 +45,7 @@ template(name="Home")
             else
               h5.results-title Choississez un résultat parmi:
               p.js-cancel(style="text-decoration:underline;  color: gray;") Retour
-              .results-grid
+              .results-grid#search-answers-grid
                 each answer in newSearch.answers
                   if answer.text
                     //- Text Img for plain text
@@ -73,7 +73,7 @@ template(name="Home")
               h5.results-title Faites une recherche ou cliquez sur des tags !
           else
             h5.results-title Résultats Correspondants
-            .results-grid
+            .results-grid#tags-answers-grid
               each answer in selectedAnswers
                 if answer.text
                   .result-card.z-depth-1(id=answer._id data-index=answer._id)
