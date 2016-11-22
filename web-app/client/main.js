@@ -135,6 +135,7 @@ TemplateController('Home', {
 
       Meteor.call('sendNewSearchAndFetch', { input: val }, (err, res) => {
         this.state.searchLoading = false;
+        refreshMasonry({ delay: 500 });
         if (err) {
           console.log(err);
         } else {
