@@ -49,7 +49,7 @@ template(name="Home")
                 each answer in newSearch.answers
                   if answer.text
                     //- Text Img for plain text
-                    .result-card.z-depth-1(style="background-color:{{answer.color}};" data-index=answer._id)
+                    .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};" data-index=answer._id)
                       .result-buttons
                         a(data-index=answer._id href="").js-validate-answer
                             .share-twitter Valider cette phrase
@@ -57,11 +57,11 @@ template(name="Home")
                       .result-img-text "#{answer.text}"
                       .result-img-ref #{answer.title}
                   else if answer.finalImage
-                    .result-card.z-depth-1(style="background-color:{{answer.color}};")
+                    .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};")
                       //- Image only
                       img(src=answer.finalImage)
                   else
-                    .result-card.z-depth-1(style="background-color:{{answer.color}};")
+                    .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};")
                       //- Image + title
                       img(src=answer.imageUrl)
                       .result-image-title #{answer.title}
@@ -76,7 +76,7 @@ template(name="Home")
             .results-grid#tags-answers-grid
               each answer in selectedAnswers
                 if answer.text
-                  .result-card.z-depth-1(style="background-color:{{answer.color}};" id=answer._id data-index=answer._id )
+                  .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};" id=answer._id data-index=answer._id )
                     //- Text Img for plain text
                     .result-buttons
                       if $not answer.finalImage
@@ -98,7 +98,7 @@ template(name="Home")
                     .result-img-ref #{answer.title}
 
                 else if answer.finalImage
-                  .result-card.z-depth-1(style="background-color:{{answer.color}};")
+                  .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};")
                     //- Image only
                     .result-buttons
                       a(href=answer.finalMessage target="_blank")
@@ -111,7 +111,7 @@ template(name="Home")
                           |Gallica
                     img(src=answer.finalImage)
                 else
-                  .result-card.z-depth-1(style="background-color:{{answer.color}};")
+                  .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};")
                     //- Image + title
                     .result-buttons
                       a(href=answer.finalMessage target="_blank")

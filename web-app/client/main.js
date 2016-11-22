@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import masonry from 'masonry-layout';
 
+const colorPalette = ['#a2f5f9', '#ffd5d5', '#d2d2ff', '#ffff94', '#a0ffa0'];
+
 toDataUrl = function(text, title, callback, outputFormat, height, color) {
   // const canvas = document.createElement('CANVAS');
   const canvas = document.getElementById('canvas');
@@ -113,8 +115,12 @@ TemplateController('Home', {
 
         toDataUrl(answer.text, answer.title, (base64Img) => {
           callItAgainSam(base64Img);
-        }, 'image/png', goodHeight, answer.color);
+        }, 'image/png', goodHeight, colorPalette[answer.color]);
       });
+    },
+    answerColor(answerId) {
+      const answer = Answers.findOne(answerId);
+      return colorPalette[answer.color];
     },
   },
   events: {
