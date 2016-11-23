@@ -3,12 +3,14 @@
 // $primary-color: color("blue", "lighten-2");
 
 
-$color1:#008080;
-$color2:#ff936d;
+$color1:#3CBAC8;
+$color2:#F19181;
 
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url("font-awesome/css/font-awesome.css");
+
 
 @font-face {
   font-family: 'Abril Fatface';
@@ -17,6 +19,13 @@ $color2:#ff936d;
   src: url('abril-fatface/AbrilFatface-Regular.otf') format('opentype');
   // font-weight: 100;
   font-style: normal;
+}
+
+.btn {
+  background-color:$color1;
+}
+.btn:hover {
+  background-color:#3097a2;
 }
 
 
