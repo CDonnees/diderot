@@ -118,11 +118,13 @@ Searches.validateAnswer = ({ searchId, answerId }) => {
     $set: { selectedAnswerId: answerId },
   });
 
-  Answers.update({_id: answerId}, {
-    $set: {
-      shortenedResourceUrl: Answers.shortenUrl(`${Meteor.absoluteUrl()}api/answer/${answerId}`),
-    },
-  });
+  if (Meteor.isServer) {
+    Answers.update({ _id: answerId }, {
+      $set: {
+        shortenedResourceUrl: Answers.shortenUrl(`${Meteor.absoluteUrl()}api/answer/${answerId}`),
+      },
+    });
+  }
 };
 
 Searches.validateForModeration = ({ searchId }) => {
@@ -131,7 +133,7 @@ Searches.validateForModeration = ({ searchId }) => {
     Searches.update({
       _id: searchId,
     }, {
-      $set: { wasModerated: true, },
+      $set: { wasModerated: true },
     });
 
     if (search.originalTweet && search.userHandle) {

@@ -11,6 +11,7 @@ Meteor.methods({
   validateNewSearchAnswer({ searchId, answerId }) {
     Searches.validateAnswer({ searchId, answerId });
     Searches.validateForModeration({ searchId });
+    return answerId;
   },
   getGoodTwitterImage({ answerId, height, base64 }) {
     if (!this.isSimulation) {
