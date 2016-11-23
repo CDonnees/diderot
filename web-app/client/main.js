@@ -2,7 +2,7 @@ import $ from 'jquery';
 import masonry from 'masonry-layout';
 import _ from 'underscore';
 
-const colorPalette = ['#70C3C8', '#93EDD4', '#F3F5C4', '#F9CB8F', '#F19181'];;
+const colorPalette = ['#a8e7ea', '#93EDD4', '#F3F5C4', '#F9CB8F', '#F19181'];
 
 toDataUrl = _.throttle(function(text, title, callback, outputFormat, height, color) {
   // const canvas = document.createElement('CANVAS');
