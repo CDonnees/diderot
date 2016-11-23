@@ -9,6 +9,8 @@ $color2:#ff936d;
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url("font-awesome/css/font-awesome.css");
+
 
 @font-face {
   font-family: 'Abril Fatface';
@@ -161,7 +163,7 @@ h5 {
       font-weight: 500;
       font-size: 1rem;
       line-height: 2.2rem;
-      padding:0.5rem;
+      padding:0 0.5rem;
       transition: 0.2s;
       &:hover {
         color:$color2;
@@ -199,7 +201,7 @@ h5 {
 }
 
 #answer-page .result-card {
-  margin:0 auto;
+  margin:3rem auto 0;
 }
 
 .result-image-title {
@@ -249,6 +251,90 @@ h5 {
   text-transform: uppercase;
   font-size: 0.8rem;
   color:#333;
+}
+
+.social-btn {
+  width:50px;
+  height: 50px;
+  background-color:green;
+  color:white;
+  text-align: center;
+  line-height: 50px;
+  -webkit-filter: brightness(1);
+  filter: brightness(1);
+  -webkit-transition: 0.1s ease-in;
+  transition: 0.1s ease-in;
+  cursor: pointer;
+  border-radius:4px;
+  i {
+    line-height: 50px;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: 0.1s ease-in;
+    transition: 0.1s ease-in;
+  }
+  &.facebook-btn {
+    background-color:#3b5998;
+  }
+  &.twitter-btn {
+    background-color:#1da1f2;
+  }
+  &.instagram-btn {
+    background-color:#93f;
+  }
+  &.pinterest-btn {
+    background-color:#bd081c;
+  }
+  &.reddit-btn {
+    background-color:#ff4500;
+  }
+  &:hover {
+    -webkit-filter: brightness(1.2);
+    filter: brightness(1.2);
+    i {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+  }
+}
+
+.links-cont {
+  text-align: left;
+  background-color:$color1;
+  padding:1rem;
+  margin:1rem auto;
+  width: calc(400px - 0.4rem);
+  max-width:100%;
+  color:white;
+  .gallica-link-box {
+    a {
+      color: white;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    i {
+      vertical-align: bottom;
+    }
+  }
+
+
+  .didero-link {
+    background-color: white;
+    color: #333;
+    padding: 0.5rem;
+  }
+
+  .social-btn {
+    display: inline-block;
+    vertical-align: top;
+    margin:0.5rem;
+    margin-left:0;
+  }
+
+  .link-title {
+    margin-top: 1rem;
+  }
 }
 
 

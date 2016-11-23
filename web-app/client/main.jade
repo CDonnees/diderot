@@ -136,13 +136,33 @@ template(name="AnswerPage")
           a(href="#" class="brand-logo")
             img.nav-logo(src="/QDDiderot-logo.png")
             span Que Dirait Diderot ?
-    h2.center Yolo answer page
+    
     .container.center
       .result-card.z-depth-1
-        .result-buttons
-          a(data-index=answer._id href="").js-validate-answer
-              .share-twitter Valider cette phrase
         .result-img-header # Que Dirait Diderot ?
         .result-img-text "Si l'on ajoute aux Michel, les Michèle, Mickaël, Jean-Michel, sans oublier les Gabriel et Raphaël, il y a bien un million et demi de Français à qui l'on peut, en ce jour, dire bonne fête"
         .result-img-ref MOEURS ET HUMEURS DES FRANÇAIS AU FIL DES SAISONS / PHILIPPE BESNARD
+
+      .links-cont
+        .gallica-link-box
+          a(href="#")
+            i.material-icons loupe
+            |Ouvrir sur Gallica
+        .share-links-box
+          .link-title Partager sur:
+          .twitter-btn.social-btn
+            i.fa.fa-2x.fa-twitter
+          .facebook-btn.social-btn
+            i.fa.fa-2x.fa-facebook
+          .instagram-btn.social-btn
+            i.fa.fa-2x.fa-instagram
+          .pinterest-btn.social-btn
+            i.fa.fa-2x.fa-pinterest
+          .reddit-btn.social-btn
+            i.fa.fa-2x.fa-reddit
+        .didero-link-box
+          .link-title Lien:
+          .didero-link bit.ly/nfeorviosdkfp
+
+
 
