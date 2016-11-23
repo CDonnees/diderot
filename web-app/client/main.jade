@@ -47,6 +47,7 @@ template(name="Home")
               p.js-cancel(style="text-decoration:underline;  color: gray;") Retour
               .results-grid#search-answers-grid
                 each answer in newSearch.answers
+                  |#{log answer}
                   if answer.text
                     //- Text Img for plain text
                     .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};" data-index=answer._id)
@@ -64,7 +65,7 @@ template(name="Home")
                     .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};")
                       //- Image + title
                       img(src=answer.imageUrl)
-                      .result-image-title #{answer.title}
+                      .result-image-title "SWAG "" #{answer.title}
 
 
           
@@ -75,12 +76,13 @@ template(name="Home")
             h5.results-title Résultats Correspondants
             .results-grid#tags-answers-grid
               each answer in selectedAnswers
+                |#{log answer}
                 if answer.text
                   .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};" id=answer._id data-index=answer._id )
                     //- Text Img for plain text
                     .result-buttons
                       if $not answer.finalImage
-                        .loading(style="display: none;")|#{getGoodTwitterImage answer._id}
+                        .loading(style="display: none;")
                         a(href="")
                           .share-twitter Création du partage twitter...
                       else
@@ -96,6 +98,8 @@ template(name="Home")
                     .result-img-header # Que Dirait Diderot ?
                     .result-img-text "#{answer.text}"
                     .result-img-ref #{answer.title}
+                    if $not answer.finalImage
+                      .loading(style="display: none;")|#{getGoodTwitterImage answer._id}
 
                 else if answer.finalImage
                   .result-card.z-depth-1(style="background-color:{{answerColor answer._id}};")
@@ -123,7 +127,7 @@ template(name="Home")
                           i.material-icons loupe
                           |Gallica
                     img(src=answer.imageUrl)
-                    .result-image-title #{answer.title}
+                    .result-image-title SWAG #{answer.title}
   canvas(id="canvas" width="800" height="600" style="opacity: 0; z-index: -99999; position:fixed;")
             
 

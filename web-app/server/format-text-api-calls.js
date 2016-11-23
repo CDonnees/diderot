@@ -134,7 +134,7 @@ FormatText = {
         console.log(err);
         console.log('Error uploading data: ', data);
       } else {
-        console.log('succesfully uploaded the image!', data);
+        console.log('succesfully uploaded the image! Url:', `${Meteor.settings.public.s3bucket}${answerId}.png`, data);
       }
     });
     return `${Meteor.settings.public.s3bucket}${answerId}.png`;
